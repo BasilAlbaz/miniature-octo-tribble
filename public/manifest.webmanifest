@@ -1,0 +1,12 @@
+{
+  "name": "Namaa Medical Study Space",
+  "short_name": "Namaa",
+  "description": "An independent local-first medical study demo.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f7f4",
+  "theme_color": "#2d6657"
+}

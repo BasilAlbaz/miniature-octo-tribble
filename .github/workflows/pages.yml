@@ -1,0 +1,35 @@
+name: Publish Namaa demo
+
+on:
+  push:
+    branches:
+      - main
+      - basilalbaz-medical-study-platform
+    paths:
+      - "public/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload static study app
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Publish GitHub Pages site
+        id: deployment
+        uses: actions/deploy-pages@v4
