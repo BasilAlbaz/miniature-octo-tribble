@@ -1,4 +1,5 @@
 import { ApiClientError, checkAccountService, mergeProgressPayloads, requestApi, serializedSize } from "./account-sync.js";
+import { clearAnswerDraft, getAnswerDraft, setAnswerDraft } from "./study-session.js";
 
 const translations = {
   ar: {
@@ -1690,12 +1691,12 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({
 const todayKey = () => dateKey();
 const format = (key, values) => t(key, values);
 
-function persist() {
+function persist({ scheduleSync = true } = {}) {
   try {
     state.updatedAt = new Date().toISOString();
     state.achievements = getAchievements().filter((achievement) => achievement.unlocked).map((achievement) => achievement.id);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    scheduleAccountSync();
+    if (scheduleSync) scheduleAccountSync();
     return true;
   } catch (error) {
     console.warn("Could not save local demo data.", error);
@@ -2036,6 +2037,9 @@ function renderQuestionSession() {
   const question = questions.find((item) => item.id === session.questionIds[session.index]);
   if (!question) return `<section class="session-card card"><div class="empty-state">${t("noMatchingQuestions")}</div></section>`;
   const answer = session.answers[question.id];
+  const draft = getAnswerDraft(session, question.id);
+  const draftSelection = selectedAnswer ?? draft?.selected ?? null;
+  const draftResponse = typedAnswer || draft?.response || "";
   const current = session.index + 1;
   const total = session.questionIds.length;
   const flag = state.tracker[question.id]?.flagged || false;
@@ -2044,7 +2048,7 @@ function renderQuestionSession() {
   if (question.type === "mcq") {
     response = `<div class="option-list">${question.options[lang()].map((optionText, index) => {
       let className = "option-button";
-      if (!answer && selectedAnswer === index) className += " selected";
+      if (!answer && draftSelection === index) className += " selected";
       if (answer && index === question.answer) className += " correct";
       if (answer && index === answer.selected && !answer.correct) className += " incorrect";
       return `<button class="${className}" data-action="select-option" data-index="${index}"${answer ? " disabled" : ""}><span class="option-letter">${String.fromCharCode(65 + index)}</span><span>${optionText}</span></button>`;
@@ -2052,7 +2056,7 @@ function renderQuestionSession() {
   } else {
     response = answer
       ? `<div class="note-box"><strong>${t("sampleAnswer")}:</strong> ${text(question.sample)}</div>`
-      : `<div class="field"><textarea id="written-answer" class="control" rows="4" placeholder="${t("writtenPlaceholder")}">${escapeHtml(typedAnswer)}</textarea><span class="field-hint">${t("selfMarkPrompt")}</span></div>`;
+      : `<div class="field"><textarea id="written-answer" class="control" rows="4" placeholder="${t("writtenPlaceholder")}">${escapeHtml(draftResponse)}</textarea><span class="field-hint">${t("selfMarkPrompt")}</span></div>`;
   }
   const feedback = answer && (session.mode === "tutor" || session.index === total - 1)
     ? `<div class="answer-feedback${answer.correct ? "" : " wrong"}"><strong>${t(answer.correct ? "correctLabel" : "incorrectLabel")}</strong><br>${t("explanationLabel")}: ${text(question.explanation)}</div>`
@@ -2060,7 +2064,7 @@ function renderQuestionSession() {
   const answerControl = !answer
     ? question.type === "written"
       ? `<div class="question-actions"><button class="btn btn-secondary" data-action="rate-written" data-correct="true">${t("gotItRight")}</button><button class="btn btn-primary" data-action="rate-written" data-correct="false">${t("needReview")}</button></div>`
-      : `<div class="question-actions"><button class="btn btn-primary" data-action="submit-answer" ${selectedAnswer === null ? "disabled" : ""}>${t("submitAnswer")}</button></div>`
+      : `<div class="question-actions"><button class="btn btn-primary" data-action="submit-answer" ${draftSelection === null ? "disabled" : ""}>${t("submitAnswer")}</button></div>`
     : `<div class="question-actions"><span class="field-hint">${t("answerRecorded")}</span><button class="btn btn-primary" data-action="next-question">${current === total ? t("finishSession") : t("nextQuestion")} <span aria-hidden="true">←</span></button></div>`;
   return `<div class="page-heading"><div><p class="eyebrow">${t("qbankEyebrow")}</p><h1>${t("qbankTitle")}</h1></div><button class="btn btn-secondary" data-action="exit-session">${t("backToStudio")}</button></div>
     <section class="session-card card">
@@ -2946,6 +2950,7 @@ function startSession(questionIds) {
     index: 0,
     mode: qbankSettings.mode,
     answers: {},
+    drafts: {},
     startedAt: Date.now(),
     deadline: qbankSettings.mode === "timed" ? Date.now() + duration * 1000 : null,
     finished: false
@@ -2976,12 +2981,14 @@ function submitCurrentAnswer(correct) {
   const session = state.activeSession;
   const question = questions.find((item) => item.id === session?.questionIds[session.index]);
   if (!session || !question || session.answers[question.id]) return;
+  const draft = getAnswerDraft(session, question.id);
   const isCorrect = Boolean(correct);
   session.answers[question.id] = {
     correct: isCorrect,
-    selected: question.type === "mcq" ? selectedAnswer : null,
-    response: question.type === "written" ? typedAnswer : null
+    selected: question.type === "mcq" ? selectedAnswer ?? draft?.selected ?? null : null,
+    response: question.type === "written" ? typedAnswer || draft?.response || "" : null
   };
+  clearAnswerDraft(session, question.id);
   const previous = state.tracker[question.id] || { attempts: 0, correct: 0, flagged: false };
   state.tracker[question.id] = {
     attempts: previous.attempts + 1,
@@ -3024,6 +3031,7 @@ function finishSession(timedOut) {
   }
   session.finished = true;
   session.timedOut = timedOut;
+  session.drafts = {};
   const total = session.questionIds.length;
   const correct = Object.values(session.answers).filter((answer) => answer.correct).length;
   const minutes = Math.max(1, Math.round((Date.now() - session.startedAt) / 60000));
@@ -3592,6 +3600,12 @@ document.addEventListener("click", async (event) => {
   }
   else if (action === "select-option" && !state.activeSession?.answers[questions.find((item) => item.id === state.activeSession.questionIds[state.activeSession.index])?.id]) {
     selectedAnswer = Number(button.dataset.index);
+    const session = state.activeSession;
+    const questionId = session?.questionIds[session.index];
+    if (questionId) {
+      setAnswerDraft(session, questionId, { selected: selectedAnswer, response: "" });
+      persist({ scheduleSync: false });
+    }
     render();
   } else if (action === "submit-answer") {
     const question = questions.find((item) => item.id === state.activeSession.questionIds[state.activeSession.index]);
@@ -4002,6 +4016,12 @@ document.addEventListener("input", (event) => {
     search.setSelectionRange(position, position);
   } else if (event.target.id === "written-answer") {
     typedAnswer = event.target.value;
+    const session = state.activeSession;
+    const questionId = session?.questionIds[session.index];
+    if (questionId) {
+      setAnswerDraft(session, questionId, { selected: null, response: typedAnswer });
+      persist({ scheduleSync: false });
+    }
   } else if (event.target.classList.contains("shortcut-input")) {
     const values = $$(".shortcut-input").map((input) => input.value.trim().toLowerCase().replace(/\s+/g, " "));
     $("#shortcut-warning").textContent = new Set(values).size === values.length ? "" : t("shortcutConflict");
