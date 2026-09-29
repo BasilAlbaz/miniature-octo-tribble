@@ -2,5 +2,8 @@ name = "namaa-medical-study"
 compatibility_date = "2026-09-28"
 pages_build_output_dir = "./public"
 
-# Local-only static app + Pages Functions scaffold.
-# Set API_BASE_URL as a Cloudflare Pages environment variable when an API exists.
+[[d1_databases]]
+binding = "DB"
+database_name = "namaa-db"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"

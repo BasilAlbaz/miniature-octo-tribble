@@ -1,12 +1,17 @@
+import { json } from "../_lib/http.js";
+import { appOrigin } from "../_lib/config.js";
+
 export async function onRequestGet({ env }) {
-  return Response.json({
-    status: "demo",
-    apiConfigured: Boolean(env.API_BASE_URL),
-    message: "The study app is running in local demo mode."
-  }, {
-    headers: {
-      "Cache-Control": "no-store",
-      "X-Content-Type-Options": "nosniff"
-    }
-  });
+  let originConfigured = false;
+  try {
+    appOrigin(env);
+    originConfigured = true;
+  } catch {
+    originConfigured = false;
+  }
+  const configured = Boolean(env.DB && env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET && originConfigured);
+  return json({
+    status: configured ? "available" : "unavailable",
+    apiConfigured: configured
+  }, configured ? 200 : 503);
 }
