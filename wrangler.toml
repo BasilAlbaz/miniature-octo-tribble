@@ -5,5 +5,5 @@ pages_build_output_dir = "./public"
 [[d1_databases]]
 binding = "DB"
 database_name = "namaa-db"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "fd3d1dc4-ae86-414f-a4a5-42043b510fda"
 migrations_dir = "migrations"
