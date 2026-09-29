@@ -1,0 +1,6 @@
+# Copy to .dev.vars for local Pages Functions development. Replace placeholders;
+# never commit .dev.vars or paste credentials into chat.
+APP_ORIGIN=http://localhost:8788
+GOOGLE_CLIENT_ID=YOUR_GOOGLE_OAUTH_CLIENT_ID
+GOOGLE_CLIENT_SECRET=REPLACE_WITH_GOOGLE_OAUTH_CLIENT_SECRET
+ADMIN_EMAILS=YOUR_ADMIN_EMAIL@example.invalid
