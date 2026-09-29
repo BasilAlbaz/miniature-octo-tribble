@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; connect-src 'self'; script-src 'self'; style-src 'self'; form-action 'self' https://accounts.google.com">
+  <meta name="referrer" content="no-referrer">
+  <title>Namaa Admin</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">NAMAA · CONTROL PANEL</p>
+        <h1>Administration</h1>
+      </div>
+      <a class="home-link" href="./">Study app</a>
+    </header>
+
+    <p id="notice" class="notice" role="status" aria-live="polite">Checking the account service…</p>
+
+    <section id="signed-out" class="panel" hidden>
+      <h2>Sign in to continue</h2>
+      <p>Use your Google account to access your account or the administrator tools assigned to you.</p>
+      <a class="button primary" href="api/auth/google/start">Continue with Google</a>
+      <p class="muted">Student signup is open. Administrator access is assigned only by the service owner.</p>
+    </section>
+
+    <section id="not-admin" class="panel" hidden>
+      <h2>Administrator access required</h2>
+      <p>You are signed in, but this account is not on the server-managed administrator allowlist.</p>
+      <button class="button secondary" data-action="logout" type="button">Sign out</button>
+    </section>
+
+    <div id="dashboard" hidden>
+      <section class="panel identity">
+        <div>
+          <h2 id="identity-name">Administrator</h2>
+          <p id="identity-email" class="muted"></p>
+        </div>
+        <button class="button secondary" data-action="logout" type="button">Sign out</button>
+      </section>
+
+      <section class="stats" aria-label="Platform overview">
+        <article class="stat panel"><span>Active accounts</span><strong id="active-count">—</strong></article>
+        <article class="stat panel"><span>Suspended accounts</span><strong id="suspended-count">—</strong></article>
+        <article class="stat panel"><span>Progress records</span><strong id="progress-count">—</strong></article>
+        <article class="stat panel"><span>Saved items</span><strong id="saved-count">—</strong></article>
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <div><h2>Student accounts</h2><p class="muted">Suspend or reactivate one student at a time. Administrator accounts cannot be modified here.</p></div>
+          <button id="refresh" class="button secondary" type="button">Refresh</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Account</th><th>Role</th><th>Status</th><th>Joined</th><th>Action</th></tr></thead>
+            <tbody id="user-rows"><tr><td colspan="5" class="muted">Loading accounts…</td></tr></tbody>
+          </table>
+        </div>
+        <div class="pagination"><button id="load-more" class="button secondary" type="button" hidden>Load more</button></div>
+      </section>
+
+      <section class="panel">
+        <h2>Recent administrative actions</h2>
+        <ul id="audit-list" class="audit-list"><li class="muted">Loading audit events…</li></ul>
+      </section>
+    </div>
+
+    <footer>Administration is available only through a configured Cloudflare Pages deployment. GitHub Pages serves the static study demo and does not run this API.</footer>
+  </main>
+</body>
+</html>
