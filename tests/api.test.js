@@ -139,6 +139,52 @@ test("Google callback consumes one-time state and rejects an unverified email", 
   }
 });
 
+test("Google callback redirects a signed-in user to the study profile", async () => {
+  const state = "one-time-state";
+  const DB = fakeDb({
+    first(sql) {
+      if (sql.includes("INSERT INTO rate_limits")) return { request_count: 1 };
+      if (sql.includes("DELETE FROM oauth_states")) return { code_verifier: "one-time-verifier" };
+      if (sql.includes("SELECT id, status FROM users")) return { id: "user-1", status: "active" };
+      return null;
+    }
+  });
+  const originalFetch = globalThis.fetch;
+  let fetchCount = 0;
+  globalThis.fetch = async () => {
+    fetchCount += 1;
+    return fetchCount === 1
+      ? Response.json({ access_token: "server-only-access-token" })
+      : Response.json({
+        sub: "google-account",
+        email: "student@example.com",
+        email_verified: true,
+        name: "Student"
+      });
+  };
+  try {
+    const response = await finishGoogleSignIn({
+      request: new Request(`https://namaa.example/api/auth/google/callback?code=authorization-code&state=${state}`, {
+        headers: { Cookie: `__Host-namaa-oauth-state=${state}` }
+      }),
+      env: {
+        DB,
+        APP_ORIGIN: "https://namaa.example",
+        GOOGLE_CLIENT_ID: "client-id",
+        GOOGLE_CLIENT_SECRET: "client-secret"
+      }
+    });
+    const destination = new URL(response.headers.get("Location"));
+    assert.equal(destination.origin, "https://namaa.example");
+    assert.equal(destination.pathname, "/");
+    assert.equal(destination.hash, "#profile");
+    assert.equal(destination.searchParams.has("auth"), false);
+    assert.equal(response.headers.getSetCookie().length, 3);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("session cookies are secure and the session token is stored only as a hash", async () => {
   let insert;
   const DB = fakeDb();

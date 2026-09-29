@@ -9,7 +9,8 @@ const SESSION_COOKIE = "__Host-namaa-session";
 const CSRF_COOKIE = "__Host-namaa-csrf";
 
 function authPageRedirect(origin, outcome) {
-  const target = new URL("/admin.html", origin);
+  const target = new URL("/", origin);
+  target.hash = "profile";
   if (outcome) target.searchParams.set("auth", outcome);
   return target.toString();
 }
