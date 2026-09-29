@@ -1,6 +1,6 @@
 import { adminEmails, assertRequestOrigin, requireGoogleConfig, requireDatabase } from "../../../_lib/config.js";
 import { constantTimeEqual, sha256, randomToken } from "../../../_lib/crypto.js";
-import { clearCookie, getCookie, HttpError, redirect, setCookie } from "../../../_lib/http.js";
+import { clearCookie, getCookie, HttpError, redirect } from "../../../_lib/http.js";
 import { enforceRateLimit } from "../../../_lib/rate-limit.js";
 import { issueSession } from "../../../_lib/session.js";
 
@@ -9,16 +9,69 @@ const SESSION_COOKIE = "__Host-namaa-session";
 const CSRF_COOKIE = "__Host-namaa-csrf";
 
 function authPageRedirect(origin, outcome) {
-  const target = new URL("/admin.html", origin);
+  const target = new URL("/", origin);
+  target.hash = "profile";
   if (outcome) target.searchParams.set("auth", outcome);
   return target.toString();
 }
 
-async function googleFetch(url, options) {
+async function googleJson(url, options, maxBytes) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
   try {
-    return await fetch(url, options);
+    const response = await fetch(url, {
+      ...options,
+      cache: "no-store",
+      redirect: "error",
+      signal: controller.signal
+    });
+    if (!response.ok) return null;
+    const contentLength = Number(response.headers.get("Content-Length") || 0);
+    if (contentLength > maxBytes || !response.body) {
+      await response.body?.cancel();
+      return null;
+    }
+    const reader = response.body.getReader();
+    const chunks = [];
+    let size = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > maxBytes) {
+        await reader.cancel();
+        return null;
+      }
+      chunks.push(value);
+    }
+    const bytes = new Uint8Array(size);
+    let offset = 0;
+    for (const chunk of chunks) {
+      bytes.set(chunk, offset);
+      offset += chunk.byteLength;
+    }
+    try {
+      return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
+    } catch {
+      return null;
+    }
   } catch {
-    throw new HttpError(502, "identity_provider_unavailable", "Google sign-in could not be completed.");
+    if (controller.signal.aborted) {
+      throw new HttpError(
+        502,
+        "identity_provider_timeout",
+        "Google sign-in took too long. Please try again.",
+        { "Set-Cookie": clearCookie(STATE_COOKIE) }
+      );
+    }
+    throw new HttpError(
+      502,
+      "identity_provider_unavailable",
+      "Google sign-in could not be completed.",
+      { "Set-Cookie": clearCookie(STATE_COOKIE) }
+    );
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
@@ -30,7 +83,10 @@ export async function onRequestGet({ request, env }) {
   const params = new URL(request.url).searchParams;
   const stateCookie = getCookie(request, STATE_COOKIE);
   const stateQuery = params.get("state");
-  if (!stateCookie || !stateQuery || !constantTimeEqual(stateCookie, stateQuery)) {
+  if (
+    !stateCookie || stateCookie.length > 100 || !stateQuery || stateQuery.length > 100 ||
+    !constantTimeEqual(stateCookie, stateQuery)
+  ) {
     throw new HttpError(400, "invalid_oauth_state", "The sign-in request could not be verified. Start again.");
   }
   const db = requireDatabase(env);
@@ -52,7 +108,7 @@ export async function onRequestGet({ request, env }) {
     });
   }
 
-  const tokenResponse = await googleFetch("https://oauth2.googleapis.com/token", {
+  const tokenBody = await googleJson("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
@@ -62,33 +118,19 @@ export async function onRequestGet({ request, env }) {
       redirect_uri: config.callbackUrl,
       grant_type: "authorization_code",
       code_verifier: pending.code_verifier
-    }),
-    redirect: "error"
-  });
-  if (!tokenResponse.ok) {
-    return redirect(authPageRedirect(config.origin, "error"), 302, {
-      "Set-Cookie": clearCookie(STATE_COOKIE)
-    });
-  }
-  const tokenBody = await tokenResponse.json().catch(() => null);
-  if (!tokenBody || typeof tokenBody.access_token !== "string" || tokenBody.access_token.length > 8192) {
+    })
+  }, 16384);
+  if (!tokenBody || typeof tokenBody.access_token !== "string" || !tokenBody.access_token || tokenBody.access_token.length > 8192) {
     return redirect(authPageRedirect(config.origin, "error"), 302, {
       "Set-Cookie": clearCookie(STATE_COOKIE)
     });
   }
 
-  const userResponse = await googleFetch("https://openidconnect.googleapis.com/v1/userinfo", {
-    headers: { Authorization: `Bearer ${tokenBody.access_token}` },
-    redirect: "error"
-  });
-  if (!userResponse.ok) {
-    return redirect(authPageRedirect(config.origin, "error"), 302, {
-      "Set-Cookie": clearCookie(STATE_COOKIE)
-    });
-  }
-  const profile = await userResponse.json().catch(() => null);
+  const profile = await googleJson("https://openidconnect.googleapis.com/v1/userinfo", {
+    headers: { Authorization: `Bearer ${tokenBody.access_token}` }
+  }, 32768);
   if (
-    !profile || typeof profile.sub !== "string" || profile.sub.length > 255 ||
+    !profile || typeof profile.sub !== "string" || !profile.sub || profile.sub.length > 255 ||
     typeof profile.email !== "string" || profile.email.length > 320 ||
     profile.email_verified !== true
   ) {

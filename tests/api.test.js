@@ -5,9 +5,9 @@ import { onRequestGet as finishGoogleSignIn } from "../functions/api/auth/google
 import { onRequestGet as adminOverview } from "../functions/api/admin/overview.js";
 import { onRequestPatch as updateUserStatus } from "../functions/api/admin/users/[id]/status.js";
 import { assertRequestOrigin } from "../functions/_lib/config.js";
-import { base64Url, sha256 } from "../functions/_lib/crypto.js";
+import { base64Url, deriveCsrfToken, sha256 } from "../functions/_lib/crypto.js";
 import { HttpError, getCookie } from "../functions/_lib/http.js";
-import { issueSession, verifyCsrf } from "../functions/_lib/session.js";
+import { csrfTokenFor, issueSession, verifyCsrf } from "../functions/_lib/session.js";
 
 function fakeDb({ first } = {}) {
   const calls = [];
@@ -36,11 +36,12 @@ function fakeDb({ first } = {}) {
       };
     },
     async batch(statements) {
-      calls.push({
+      const batch = {
         method: "batch",
         statements: statements.map((statement) => ({ sql: statement.sql, args: statement.args }))
-      });
-      return [];
+      };
+      calls.push(batch);
+      return statements.map(() => ({ success: true }));
     }
   };
   return db;
@@ -139,6 +140,134 @@ test("Google callback consumes one-time state and rejects an unverified email", 
   }
 });
 
+test("Google callback redirects to the study profile and creates a verified student session", async () => {
+  const state = "one-time-state";
+  const DB = fakeDb({
+    first(sql) {
+      if (sql.includes("INSERT INTO rate_limits")) return { request_count: 1 };
+      if (sql.includes("DELETE FROM oauth_states")) return { code_verifier: "one-time-verifier" };
+      if (sql.includes("SELECT id, status FROM users")) return { id: "user-1", status: "active" };
+      return null;
+    }
+  });
+  const originalFetch = globalThis.fetch;
+  let fetchCount = 0;
+  globalThis.fetch = async () => {
+    fetchCount += 1;
+    return fetchCount === 1
+      ? Response.json({ access_token: "server-only-access-token" })
+      : Response.json({
+        sub: "google-account",
+        email: "student@example.com",
+        email_verified: true,
+        name: "Student"
+      });
+  };
+  try {
+    const response = await finishGoogleSignIn({
+      request: new Request(`https://namaa.example/api/auth/google/callback?code=authorization-code&state=${state}`, {
+        headers: { Cookie: `__Host-namaa-oauth-state=${state}` }
+      }),
+      env: {
+        DB,
+        APP_ORIGIN: "https://namaa.example",
+        GOOGLE_CLIENT_ID: "client-id",
+        GOOGLE_CLIENT_SECRET: "client-secret"
+      }
+    });
+    const destination = new URL(response.headers.get("Location"));
+    assert.equal(destination.origin, "https://namaa.example");
+    assert.equal(destination.pathname, "/");
+    assert.equal(destination.hash, "#profile");
+    assert.equal(destination.searchParams.has("auth"), false);
+    assert.equal(response.headers.getSetCookie().length, 3);
+    const userInsert = DB.calls.find((call) => call.sql?.includes("INSERT INTO users"));
+    assert.equal(userInsert.args[2], "student@example.com");
+    assert.equal(userInsert.args[4], "student");
+    assert.equal(response.headers.getSetCookie().some((cookie) => cookie.includes("server-only-access-token")), false);
+    assert.equal(DB.calls.some((call) => call.sql?.includes("INSERT INTO sessions")), true);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("Google token responses above the byte limit are rejected without creating a user", async () => {
+  const state = "one-time-state";
+  const DB = fakeDb({
+    first(sql) {
+      if (sql.includes("INSERT INTO rate_limits")) return { request_count: 1 };
+      if (sql.includes("DELETE FROM oauth_states")) return { code_verifier: "one-time-verifier" };
+      return null;
+    }
+  });
+  const originalFetch = globalThis.fetch;
+  let fetchCount = 0;
+  globalThis.fetch = async () => {
+    fetchCount += 1;
+    return fetchCount === 1
+      ? new Response(JSON.stringify({ access_token: "token" }), {
+        headers: { "Content-Type": "application/json", "Content-Length": "20000" }
+      })
+      : Response.json({});
+  };
+  try {
+    const response = await finishGoogleSignIn({
+      request: new Request(`https://namaa.example/api/auth/google/callback?code=authorization-code&state=${state}`, {
+        headers: { Cookie: `__Host-namaa-oauth-state=${state}` }
+      }),
+      env: {
+        DB,
+        APP_ORIGIN: "https://namaa.example",
+        GOOGLE_CLIENT_ID: "client-id",
+        GOOGLE_CLIENT_SECRET: "client-secret"
+      }
+    });
+    const destination = new URL(response.headers.get("Location"));
+    assert.equal(destination.hash, "#profile");
+    assert.equal(destination.searchParams.get("auth"), "error");
+    assert.equal(fetchCount, 1);
+    assert.equal(DB.calls.some((call) => call.sql?.includes("INSERT INTO users")), false);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("Google provider failures clear the consumed OAuth state cookie without exposing provider details", async () => {
+  const state = "one-time-state";
+  const DB = fakeDb({
+    first(sql) {
+      if (sql.includes("INSERT INTO rate_limits")) return { request_count: 1 };
+      if (sql.includes("DELETE FROM oauth_states")) return { code_verifier: "one-time-verifier" };
+      return null;
+    }
+  });
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => { throw new Error("provider transport detail"); };
+  try {
+    await assert.rejects(
+      finishGoogleSignIn({
+        request: new Request(`https://namaa.example/api/auth/google/callback?code=authorization-code&state=${state}`, {
+          headers: { Cookie: `__Host-namaa-oauth-state=${state}` }
+        }),
+        env: {
+          DB,
+          APP_ORIGIN: "https://namaa.example",
+          GOOGLE_CLIENT_ID: "client-id",
+          GOOGLE_CLIENT_SECRET: "client-secret"
+        }
+      }),
+      (error) => {
+        assert.equal(error.status, 502);
+        assert.equal(error.message.includes("provider transport detail"), false);
+        assert.match(error.headers["Set-Cookie"], /^__Host-namaa-oauth-state=; Path=\/; Secure; SameSite=Lax; Max-Age=0; HttpOnly$/);
+        return true;
+      }
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("session cookies are secure and the session token is stored only as a hash", async () => {
   let insert;
   const DB = fakeDb();
@@ -156,9 +285,56 @@ test("session cookies are secure and the session token is stored only as a hash"
   assert.equal(insert[1], "user-1");
   assert.equal(insert[0], await sha256(result.token));
   assert.notEqual(insert[0], result.token);
+  assert.equal(insert[2], await sha256(result.csrfToken));
+  assert.equal(result.csrfToken, await deriveCsrfToken(result.token));
   assert.match(result.sessionCookie, /^__Host-namaa-session=.*; Path=\/; Secure; SameSite=Lax; Max-Age=604800; HttpOnly$/);
   assert.match(result.csrfCookie, /^__Host-namaa-csrf=.*; Path=\/; Secure; SameSite=Lax; Max-Age=604800$/);
   assert.doesNotMatch(result.csrfCookie, /HttpOnly/);
+});
+
+test("session rotation atomically replaces the prior hashed session", async () => {
+  const DB = fakeDb();
+  const previousToken = "previous-session-token";
+  const result = await issueSession(DB, "user-1", previousToken);
+  const batch = DB.calls.find((call) => call.method === "batch");
+  assert.equal(batch.statements.length, 2);
+  assert.equal(batch.statements[0].sql, "DELETE FROM sessions WHERE token_hash = ?");
+  assert.equal(batch.statements[0].args[0], await sha256(previousToken));
+  assert.match(batch.statements[1].sql, /INSERT INTO sessions/);
+  assert.equal(batch.statements[1].args[0], await sha256(result.token));
+});
+
+test("CSRF recovery is deterministic across concurrent requests and preserves valid existing tokens", async () => {
+  const sessionToken = "existing-session-token";
+  const legacyCsrf = "previous-random-csrf";
+  const DB = fakeDb();
+  const session = {
+    csrf_hash: await sha256(legacyCsrf),
+    expires_at: Math.floor(Date.now() / 1000) + 600,
+    tokenHash: await sha256(sessionToken)
+  };
+  const request = new Request("https://namaa.example/api/auth/me", {
+    headers: { Cookie: `__Host-namaa-session=${sessionToken}` }
+  });
+  const [first, second] = await Promise.all([
+    csrfTokenFor(request, DB, session),
+    csrfTokenFor(request, DB, session)
+  ]);
+  assert.equal(first.token, second.token);
+  assert.equal(first.token, await deriveCsrfToken(sessionToken));
+  assert.match(first.setCookie, new RegExp(`__Host-namaa-csrf=${first.token}`));
+  assert.equal(DB.calls.filter((call) => call.sql?.includes("UPDATE sessions SET csrf_hash")).length, 2);
+  for (const update of DB.calls.filter((call) => call.sql?.includes("UPDATE sessions SET csrf_hash"))) {
+    assert.equal(update.args[0], await sha256(first.token));
+    assert.equal(update.args[1], session.tokenHash);
+  }
+
+  const validExistingCookieRequest = new Request("https://namaa.example/api/auth/me", {
+    headers: { Cookie: `__Host-namaa-session=${sessionToken}; __Host-namaa-csrf=${legacyCsrf}` }
+  });
+  const existing = await csrfTokenFor(validExistingCookieRequest, DB, session);
+  assert.equal(existing.token, legacyCsrf);
+  assert.equal(existing.setCookie, null);
 });
 
 test("CSRF validation requires same-origin request and matching readable cookie/header", async () => {

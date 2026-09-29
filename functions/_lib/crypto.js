@@ -17,6 +17,10 @@ export async function sha256(value) {
   return base64Url(new Uint8Array(digest));
 }
 
+export async function deriveCsrfToken(sessionToken) {
+  return sha256(`namaa-csrf-v1:${sessionToken}`);
+}
+
 export function constantTimeEqual(left, right) {
   if (typeof left !== "string" || typeof right !== "string" || left.length !== right.length) return false;
   let difference = 0;

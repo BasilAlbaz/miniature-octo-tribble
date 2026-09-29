@@ -25,13 +25,13 @@ The backend uses Cloudflare Pages Functions and D1 only; it does not use R2, pai
 
 **Authentication and authorization:** student registration is open to any Google account with a verified email. The app accepts no client-supplied role. Effective admin privileges are determined on every request from `ADMIN_EMAILS`; no API can grant roles and stored role values do not override the allowlist. Admins can view aggregate data and student accounts, then suspend/reactivate individual student accounts. Admin accounts cannot be changed through this panel; suspension revokes the student's active sessions. Every successful status change is audit logged. The admin panel is at `/admin.html`.
 
-**Cookie and API contract:** session cookies are opaque, hashed in D1, HttpOnly, Secure, SameSite=Lax, and expire after seven days. The separate Secure SameSite=Lax CSRF cookie is readable by same-origin JavaScript; send its value as `X-CSRF-Token` on every mutation. Mutation routes enforce exact `Origin`, session, and CSRF-token checks; the API does not enable cross-origin access. OAuth state and PKCE verifier records expire after ten minutes and are consumed once. Request bodies and request rates are bounded.
+**Cookie and API contract:** session cookies are opaque, hashed in D1, HttpOnly, Secure, SameSite=Lax, and expire after seven days. Session replacement is transactional. The separate Secure SameSite=Lax CSRF cookie is readable by same-origin JavaScript; send its value as `X-CSRF-Token` on every mutation. Its per-session derived value makes concurrent recovery after a missing cookie deterministic. Mutation routes enforce exact `Origin`, session, and CSRF-token checks; the API does not enable cross-origin access. OAuth state and PKCE verifier records expire after ten minutes and are consumed once; callback state is size-bounded and Google token/profile responses have byte limits and a timeout. Request bodies and request rates are bounded.
 
 | Route | Contract |
 |---|---|
 | `GET /api/status` | `200 {status:"available",apiConfigured:true}` when required bindings/config exist; otherwise `503` without exposing values. |
 | `GET /api/auth/google/start` | Redirects to Google; state and PKCE are server-generated. |
-| `GET /api/auth/google/callback` | Validates state, exchanges the code server-side, requires Google's `email_verified: true`, issues session + CSRF cookies, and redirects to `/admin.html`. |
+| `GET /api/auth/google/callback` | Validates state, exchanges the code server-side, requires Google's `email_verified: true`, issues session + CSRF cookies, and redirects to the app profile. |
 | `GET /api/auth/me` | Returns `{authenticated:false,user:null}` or `{authenticated:true,user:{id,email,displayName,role},csrfToken}`. |
 | `POST /api/auth/logout` | Requires `X-CSRF-Token`; returns `{ok:true}` and clears the cookies. |
 | `GET /api/study/progress` | Returns the current user's `{items:[{itemKey,payload,updatedAt}]}`. |

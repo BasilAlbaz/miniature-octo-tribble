@@ -1,6 +1,6 @@
 import { HttpError, getCookie, setCookie } from "./http.js";
 import { appOrigin, assertRequestOrigin, requireDatabase } from "./config.js";
-import { constantTimeEqual, randomToken, sha256 } from "./crypto.js";
+import { constantTimeEqual, deriveCsrfToken, randomToken, sha256 } from "./crypto.js";
 import { enforceRateLimit } from "./rate-limit.js";
 
 export const SESSION_COOKIE = "__Host-namaa-session";
@@ -26,17 +26,20 @@ export async function getSession(request, env) {
 export async function issueSession(db, userId, previousToken) {
   const now = Math.floor(Date.now() / 1000);
   const token = randomToken();
-  const csrfToken = randomToken();
+  const csrfToken = await deriveCsrfToken(token);
   const tokenHash = await sha256(token);
   const csrfHash = await sha256(csrfToken);
-  if (previousToken) {
-    await db.prepare("DELETE FROM sessions WHERE token_hash = ?")
-      .bind(await sha256(previousToken))
-      .run();
-  }
-  await db.prepare(
+  const insert = db.prepare(
     "INSERT INTO sessions (token_hash, user_id, csrf_hash, created_at, expires_at) VALUES (?, ?, ?, ?, ?)"
-  ).bind(tokenHash, userId, csrfHash, now, now + SESSION_SECONDS).run();
+  ).bind(tokenHash, userId, csrfHash, now, now + SESSION_SECONDS);
+  if (previousToken) {
+    await db.batch([
+      db.prepare("DELETE FROM sessions WHERE token_hash = ?").bind(await sha256(previousToken)),
+      insert
+    ]);
+  } else {
+    await insert.run();
+  }
   return {
     token,
     csrfToken,
@@ -47,17 +50,21 @@ export async function issueSession(db, userId, previousToken) {
 }
 
 export async function csrfTokenFor(request, db, session) {
+  const sessionToken = getCookie(request, SESSION_COOKIE);
+  if (!sessionToken || sessionToken.length > 100) {
+    throw new HttpError(401, "authentication_required", "Sign in to continue.");
+  }
+  const derivedToken = await deriveCsrfToken(sessionToken);
   const token = getCookie(request, CSRF_COOKIE);
   if (token && token.length <= 100 && constantTimeEqual(await sha256(token), session.csrf_hash)) {
     return { token, setCookie: null };
   }
-  const nextToken = randomToken();
   await db.prepare("UPDATE sessions SET csrf_hash = ? WHERE token_hash = ?")
-    .bind(await sha256(nextToken), session.tokenHash)
+    .bind(await sha256(derivedToken), session.tokenHash)
     .run();
   return {
-    token: nextToken,
-    setCookie: setCookie(CSRF_COOKIE, nextToken, {
+    token: derivedToken,
+    setCookie: setCookie(CSRF_COOKIE, derivedToken, {
       maxAge: Math.max(0, session.expires_at - Math.floor(Date.now() / 1000)),
       httpOnly: false
     })
