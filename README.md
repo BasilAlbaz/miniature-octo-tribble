@@ -52,7 +52,7 @@ API errors use `{error:{code,message}}`; session-owned records are always querie
 
 - Dashboard, daily goal, streak, activity history, progress summaries, and achievements.
 - Question Studio with original specialty packs, content/custom sessions, tutor/timed modes, source/progress/type/difficulty filters, MCQ/written questions, flags, explanations, and a review tracker.
-- Learning hub, searchable article summaries with bookmarks, flashcards, OSCE checklists, and short original video-lesson scripts with progress tracking.
+- Learning hub, searchable article summaries with a reading toolbar, local notes/highlights and bookmarks, flashcards with spaced-repetition scheduling and Anki TSV export, original OSCE communication checklists, and text-only video-lesson demos with specialty folders and local progress.
 - Profile hub with local study notes, account/session placeholders, appearance and language preferences, keyboard shortcuts, device options, and categorized settings.
 - Local backup export/import, bundled-content offline shell, and clearly marked unavailable account sync, AI, and support integrations.
 - Arabic RTL interface with an English toggle; preferences and demo progress persist locally. All medical examples are original, small, and illustrative—not clinical guidance.

@@ -112,6 +112,32 @@ const translations = {
     osceDesc: "تدرّب على تنظيم المقابلة والفحص في حالة تمثيلية.",
     videosTitle: "مكتبة الفيديو",
     videosDesc: "دروس مصغّرة عن مهارات التعلّم السريري.",
+    allSpecialties: "كل التخصصات",
+    videoFolder: "المجلد",
+    allFolders: "كل المجلدات",
+    videoSearch: "ابحث في الدروس",
+    sortLessons: "ترتيب الدروس",
+    sortDefault: "الترتيب الافتراضي",
+    sortTitle: "العنوان",
+    sortDuration: "المدة",
+    allLessons: "كل الدروس",
+    watchedLessons: "المشاهدة",
+    unwatchedLessons: "لم تُشاهد",
+    noVideoResults: "لا توجد دروس تطابق التصفية.",
+    lessonCount: "{count} دروس",
+    openFolder: "افتح المجلد",
+    backToFolders: "كل التخصصات",
+    playerPrevious: "الدرس السابق",
+    playerNext: "الدرس التالي",
+    autoplayNext: "التشغيل التلقائي للدرس التالي",
+    playbackSpeed: "سرعة القراءة",
+    lessonProgress: "حالة التقدّم",
+    textLessonOnly: "مشغّل نصي تجريبي — لا يوجد ملف فيديو أو بث.",
+    upNext: "الدروس في هذا المجلد",
+    casePicker: "اختر حالة تدريبية",
+    caseInterview: "مقابلة أولية",
+    caseSharedPlan: "شرح خطة متابعة",
+    caseChecklist: "ترتيب عناصر المقابلة",
     openModule: "افتح المساحة",
     backToLearn: "العودة لمساحة التعلّم",
     articlesEyebrow: "اقرأ واحتفظ",
@@ -133,6 +159,81 @@ const translations = {
     deckCore: "مبادئ الفحص",
     deckCardio: "مفاهيم القلب",
     deckLearning: "مهارات التعلّم",
+    deckEntEar: "الأذن",
+    deckEntLarynx: "الحنجرة",
+    deckEntNose: "الأنف",
+    deckEntPharynx: "البلعوم",
+    deckFamily: "أساسيات طب الأسرة",
+    deckOphthalmology: "ملاحظة العين",
+    deckEbm: "أساسيات الطب المبني على الدليل",
+    studyAll: "ابدأ مراجعة الكل",
+    dueCards: "مستحقة",
+    newCards: "جديدة",
+    totalCards: "إجمالي البطاقات",
+    noCardsDue: "لا توجد بطاقات مستحقة الآن.",
+    deckSearch: "ابحث في المجموعات",
+    deckDownload: "حفظ المجموعة محلياً",
+    deckDownloaded: "المجموعة محفوظة محلياً",
+    ratingAgain: "مرة أخرى",
+    ratingHard: "صعبة",
+    ratingGood: "جيدة",
+    ratingEasy: "سهلة",
+    nextReview: "موعد المراجعة",
+    cardProgress: "البطاقة {current} من {total}",
+    studyComplete: "اكتملت جلسة البطاقات.",
+    deckCount: "مجموعات",
+    mastery: "الإتقان",
+    reviewedCards: "تمت مراجعتها",
+    retention: "الاحتفاظ",
+    reviewedToday: "مراجعة اليوم",
+    basicCards: "أساسية",
+    clozeCards: "حذف",
+    exportAnki: "تصدير إلى Anki",
+    ankiExportHelp: "تم تنزيل ملف نصي بحقول أمامية وخلفية وعلامات فقط. لا يتضمن صوراً أو وسائط.",
+    ankiImportTitle: "استيراد الملف إلى Anki",
+    ankiImportSteps: "في Anki اختر File ثم Import، وحدد الملف النصي. افصل الحقول بعلامة Tab، عطّل HTML، واختر نوع الملاحظة Basic. اربط الأعمدة بالترتيب: Front ثم Back ثم Tags. لا يتضمن الملف أي وسائط.",
+    articleToc: "محتويات الملخص",
+    readingDisplay: "إعدادات القراءة",
+    fontSize: "حجم الخط",
+    textZoom: "تكبير النص",
+    decrease: "تصغير",
+    increase: "تكبير",
+    resetDisplay: "إعادة الضبط 100٪",
+    typeface: "نوع الخط",
+    sansTypeface: "بسيط",
+    serifTypeface: "نسخي",
+    lineSpacing: "تباعد الأسطر",
+    compactSpacing: "مضغوط",
+    cozySpacing: "مريح",
+    relaxedSpacing: "واسع",
+    readingWidth: "عرض القراءة",
+    normalWidth: "عادي",
+    wideWidth: "واسع",
+    highlightSelection: "تمييز النص المحدد",
+    selectTextFirst: "حدد نصاً من الملخص أولاً.",
+    highlightsTitle: "مقاطع مميزة",
+    removeHighlight: "إزالة التمييز",
+    shareArticle: "مشاركة",
+    copyArticleLink: "نسخ الرابط",
+    linkCopied: "تم نسخ رابط الملخص.",
+    linkCopyFailed: "تعذّر نسخ الرابط في هذا المتصفح.",
+    articleNote: "ملاحظتي على هذا الملخص",
+    articleNoteHint: "تُحفظ الملاحظة على هذا الجهاز فقط.",
+    exportArticlePdf: "تصدير PDF / طباعة",
+    overviewSection: "نظرة عامة",
+    reflectionSection: "أسئلة للتأمل",
+    articleReflection: "ما الفكرة الأوضح؟ ما الذي تريد التحقق منه؟ وما الخطوة التعليمية التالية؟",
+    displaySection: "إعداد العرض",
+    highlightMode: "وضع التمييز",
+    enableHighlight: "فعّل وضع التمييز أولاً.",
+    highlightSaved: "تم حفظ التمييز محلياً.",
+    eraseHighlights: "مسح التمييزات",
+    highlightYellow: "أصفر",
+    highlightGreen: "أخضر",
+    highlightBlue: "أزرق",
+    highlightPink: "وردي",
+    highlightPurple: "بنفسجي",
+    highlightOrange: "برتقالي",
     flipCard: "اكشف الإجابة",
     previousCard: "السابقة",
     nextCard: "التالية",
@@ -523,6 +624,32 @@ const translations = {
     osceDesc: "Practice structuring an interview and examination in a sample case.",
     videosTitle: "Video library",
     videosDesc: "Mini-lessons about clinical learning skills.",
+    allSpecialties: "All specialties",
+    videoFolder: "Folder",
+    allFolders: "All folders",
+    videoSearch: "Search lessons",
+    sortLessons: "Sort lessons",
+    sortDefault: "Default order",
+    sortTitle: "Title",
+    sortDuration: "Duration",
+    allLessons: "All lessons",
+    watchedLessons: "Watched",
+    unwatchedLessons: "Unwatched",
+    noVideoResults: "No lessons match these filters.",
+    lessonCount: "{count} lessons",
+    openFolder: "Open folder",
+    backToFolders: "All specialties",
+    playerPrevious: "Previous lesson",
+    playerNext: "Next lesson",
+    autoplayNext: "Auto-open next lesson",
+    playbackSpeed: "Read-aloud speed",
+    lessonProgress: "Progress",
+    textLessonOnly: "Demo text player — no video file or stream is included.",
+    upNext: "Lessons in this folder",
+    casePicker: "Choose a practice station",
+    caseInterview: "Opening interview",
+    caseSharedPlan: "Explaining a follow-up plan",
+    caseChecklist: "Structuring an interview",
     openModule: "Open module",
     backToLearn: "Back to learning",
     articlesEyebrow: "Read and save",
@@ -544,6 +671,81 @@ const translations = {
     deckCore: "Examination basics",
     deckCardio: "Heart concepts",
     deckLearning: "Learning skills",
+    deckEntEar: "Ear",
+    deckEntLarynx: "Larynx",
+    deckEntNose: "Nose",
+    deckEntPharynx: "Pharynx",
+    deckFamily: "Family medicine basics",
+    deckOphthalmology: "Eye observation",
+    deckEbm: "Evidence-based medicine basics",
+    studyAll: "Study all",
+    dueCards: "Due",
+    newCards: "New",
+    totalCards: "Total cards",
+    noCardsDue: "There are no cards due right now.",
+    deckSearch: "Search decks",
+    deckDownload: "Save deck locally",
+    deckDownloaded: "Deck saved locally",
+    ratingAgain: "Again",
+    ratingHard: "Hard",
+    ratingGood: "Good",
+    ratingEasy: "Easy",
+    nextReview: "Next review",
+    cardProgress: "Card {current} of {total}",
+    studyComplete: "Flashcard session complete.",
+    deckCount: "Decks",
+    mastery: "Mastery",
+    reviewedCards: "Reviewed",
+    retention: "Retention",
+    reviewedToday: "Reviewed today",
+    basicCards: "Basic",
+    clozeCards: "Cloze",
+    exportAnki: "Export to Anki",
+    ankiExportHelp: "A text file with front, back, and tags fields was downloaded. No images or media are included.",
+    ankiImportTitle: "Import the file into Anki",
+    ankiImportSteps: "In Anki choose File, then Import, and select the text file. Use Tab as the field separator, turn off HTML, and choose the Basic note type. Map the columns in order: Front, Back, then Tags. The file contains no media.",
+    articleToc: "Summary contents",
+    readingDisplay: "Reading display",
+    fontSize: "Font size",
+    textZoom: "Text zoom",
+    decrease: "Decrease",
+    increase: "Increase",
+    resetDisplay: "Reset to 100%",
+    typeface: "Typeface",
+    sansTypeface: "Sans",
+    serifTypeface: "Serif",
+    lineSpacing: "Line spacing",
+    compactSpacing: "Compact",
+    cozySpacing: "Cozy",
+    relaxedSpacing: "Relaxed",
+    readingWidth: "Reading width",
+    normalWidth: "Normal",
+    wideWidth: "Wide",
+    highlightSelection: "Highlight selected text",
+    selectTextFirst: "Select text in the summary first.",
+    highlightsTitle: "Highlighted passages",
+    removeHighlight: "Remove highlight",
+    shareArticle: "Share",
+    copyArticleLink: "Copy link",
+    linkCopied: "Summary link copied.",
+    linkCopyFailed: "Could not copy the link in this browser.",
+    articleNote: "My note on this summary",
+    articleNoteHint: "This note is saved on this device only.",
+    exportArticlePdf: "Export PDF / Print",
+    overviewSection: "Overview",
+    reflectionSection: "Reflection prompts",
+    articleReflection: "What idea is clearest? What would you verify? What is your next learning step?",
+    displaySection: "Display settings",
+    highlightMode: "Highlight mode",
+    enableHighlight: "Turn on highlight mode first.",
+    highlightSaved: "Highlight saved on this device.",
+    eraseHighlights: "Erase highlights",
+    highlightYellow: "Yellow",
+    highlightGreen: "Green",
+    highlightBlue: "Blue",
+    highlightPink: "Pink",
+    highlightPurple: "Purple",
+    highlightOrange: "Orange",
     flipCard: "Reveal answer",
     previousCard: "Previous",
     nextCard: "Next",
@@ -1110,20 +1312,83 @@ const decks = {
     { front: { ar: "لماذا نلاحظ النظم إلى جانب معدل النبض؟", en: "Why note rhythm as well as pulse rate?" }, back: { ar: "لأن المعدل وحده لا يصف انتظام النبض أو اختلاف الفواصل بين الضربات.", en: "Rate alone does not describe pulse regularity or variation between beats." } }
   ],
   learning: [
-    { front: { ar: "ما المقصود بالتذكّر النشط؟", en: "What is active recall?" }, back: { ar: "محاولة استدعاء المعلومة من الذاكرة قبل الرجوع إلى المصدر للتحقق.", en: "Trying to retrieve information from memory before checking the source." } },
+    { type: "cloze", front: { ar: "أكمل: التذكّر النشط هو محاولة ____ المعلومة من الذاكرة.", en: "Complete: Active recall means trying to ____ information from memory." }, back: { ar: "استدعاء المعلومة قبل الرجوع إلى المصدر للتحقق.", en: "Retrieve information before checking the source." } },
     { front: { ar: "ما الخطوة التالية بعد اكتشاف فجوة في المعرفة؟", en: "What is a useful next step after finding a knowledge gap?" }, back: { ar: "تحقق من مصدر موثوق، ثم أعد الاستدعاء لاحقاً ولاحظ ما تحسن.", en: "Check a trusted source, then retrieve it again later and notice what improved." } },
     { front: { ar: "اذكر سؤالاً واحداً للتأمل بعد جلسة تعلّم.", en: "Name one reflection prompt after a learning session." }, back: { ar: "ما الفكرة التي أصبحت أوضح؟ أو ما الخطوة الصغيرة التالية؟", en: "What idea is clearer now? Or what is one small next step?" } }
+  ],
+  entEar: [
+    { front: { ar: "ما الذي يجعل سؤال المتابعة مفتوحاً؟", en: "What makes a follow-up question open-ended?" }, back: { ar: "أنه يتيح للشخص أن يصف تجربته بكلماته بدلاً من اختيار إجابة محددة.", en: "It lets the person describe their experience in their own words instead of selecting a fixed response." } },
+    { front: { ar: "ما فائدة تلخيص ما سمعته أثناء المقابلة؟", en: "Why summarize what you heard during an interview?" }, back: { ar: "للتحقق من الفهم وإتاحة فرصة لتصحيح أي سوء فهم.", en: "To check understanding and give the person a chance to correct a misunderstanding." } }
+  ],
+  entLarynx: [
+    { front: { ar: "ما الخطوة الأولى قبل تمرين تواصل سريري تمثيلي؟", en: "What is a first step before a simulated clinical communication exercise?" }, back: { ar: "شرح الهدف التعليمي وطبيعة المحاكاة والحصول على موافقة المشارك.", en: "Explain the learning goal and simulation format, then obtain the participant's agreement." } },
+    { front: { ar: "كيف تتعامل مع إجابة لم تفهمها جيداً؟", en: "How can you respond to an answer you did not fully understand?" }, back: { ar: "اطلب توضيحاً بلطف وأعد صياغة ما فهمته للتحقق.", en: "Ask for clarification respectfully and paraphrase what you understood to check." } }
+  ],
+  entNose: [
+    { front: { ar: "ما المقصود بالملاحظة المنهجية في التدريب؟", en: "What does systematic observation mean in training?" }, back: { ar: "اتباع تسلسل تعليمي واضح وتسجيل الملاحظات دون استنتاج يتجاوز ما تمت ملاحظته.", en: "Following a clear learning sequence and recording observations without conclusions beyond what was observed." } },
+    { front: { ar: "متى ينبغي إيقاف تمرين فحص تمثيلي؟", en: "When should a simulated examination exercise stop?" }, back: { ar: "إذا سحب المشارك موافقته أو شعر بعدم الارتياح؛ تُتبع قواعد السلامة والإشراف المحلية.", en: "If the participant withdraws consent or becomes uncomfortable; follow local safety and supervision rules." } }
+  ],
+  entPharynx: [
+    { front: { ar: "ما أهمية التحقق من تفضيلات الشخص قبل الفحص؟", en: "Why check a person's preferences before an examination?" }, back: { ar: "لدعم التواصل المحترم والموافقة المستنيرة وإتاحة التوقف عند الحاجة.", en: "To support respectful communication and informed consent, with the option to stop when needed." } },
+    { front: { ar: "ما عبارة مناسبة لعرض فرصة لطرح الأسئلة؟", en: "What is a useful way to invite questions?" }, back: { ar: "هل ترغب أن أوضح أي جزء أو أن أجيب عن سؤال قبل أن نتابع؟", en: "Would you like me to clarify anything or answer a question before we continue?" } }
+  ],
+  family: [
+    { front: { ar: "كيف تبدأ استكشاف أولويات الشخص؟", en: "How can you begin exploring a person's priorities?" }, back: { ar: "اسأله عمّا يهمه أكثر وما الذي يأمل الخروج به من اللقاء.", en: "Ask what matters most to them and what they hope to take away from the visit." } },
+    { front: { ar: "ما دور التلخيص الختامي للمقابلة؟", en: "What is the role of a closing summary?" }, back: { ar: "تأكيد النقاط المتفق عليها والخطوات التالية والتحقق من فهم الشخص لها.", en: "Confirm shared points and next steps, then check that the person understands them." } }
+  ],
+  ophthalmology: [
+    { front: { ar: "ما الفرق بين الملاحظة والاستنتاج في التدريب؟", en: "What is the difference between an observation and an inference in training?" }, back: { ar: "الملاحظة تصف ما شوهد مباشرة، أما الاستنتاج فيفسره ويحتاج إلى سياق وتحقق.", en: "An observation describes what was directly seen; an inference interprets it and needs context and verification." } },
+    { front: { ar: "ما الذي ينبغي فعله قبل استخدام أداة تعليمية على شخص؟", en: "What should happen before using a learning tool on a person?" }, back: { ar: "شرح الغرض والخطوات المتوقعة والحصول على الموافقة واتباع الإشراف الملائم.", en: "Explain the purpose and expected steps, obtain consent, and follow appropriate supervision." } }
+  ],
+  ebm: [
+    { front: { ar: "ما السؤال الذي يساعد على فحص جودة مصدر تعليمي؟", en: "What question helps assess the quality of a learning source?" }, back: { ar: "من أعدّه؟ متى حُدّث؟ وما الأدلة أو المراجع التي يستند إليها؟", en: "Who prepared it? When was it updated? What evidence or references support it?" } },
+    { front: { ar: "لماذا لا تكفي نتيجة واحدة لاتخاذ استنتاج عام؟", en: "Why is one result not enough to support a broad conclusion?" }, back: { ar: "لأن التفسير يعتمد على تصميم الدراسة والسياق والقيود ومجموع الأدلة المتاحة.", en: "Interpretation depends on study design, context, limitations, and the body of available evidence." } }
   ]
 };
 
-const videos = [
-  { id: "video-listening", duration: "04:20", title: { ar: "الإنصات الفعّال: تمرين قصير", en: "Active listening: a short exercise" }, description: { ar: "خطوات بسيطة لملاحظة ما يقوله المريض وما يهمه.", en: "Simple steps for noticing what a patient says and what matters to them." }, lesson: { ar: "ابدأ بإتاحة مساحة للمتحدث كي يشرح فكرته. لاحظ الكلمات والمشاعر، ولا تتعجل الانتقال إلى الحلول. استخدم تلخيصاً قصيراً للتأكد من فهمك، ثم اسأل سؤالاً مفتوحاً عمّا يود إضافته.", en: "Give the speaker space to explain their perspective. Notice both words and feelings, and avoid rushing to solutions. Offer a brief summary to check your understanding, then ask an open question about anything they would like to add." } },
-  { id: "video-recall", duration: "03:45", title: { ar: "كيف تراجع بالتذكّر النشط؟", en: "How to revise with active recall" }, description: { ar: "حوّل فقرة قصيرة إلى أسئلة للمراجعة الذاتية.", en: "Turn a short passage into self-review prompts." }, lesson: { ar: "بعد قراءة فكرة واحدة، أغلق المصدر واكتب ما تتذكره. قارِن إجابتك بالمادة الأصلية، وحدد فجوة واحدة للمراجعة. أعد المحاولة بعد فاصل زمني بدلاً من تكرار القراءة مباشرة.", en: "After reading one idea, close the source and write what you remember. Compare your response with the original material and identify one gap to revisit. Try again after an interval rather than immediately rereading." } },
-  { id: "video-exam", duration: "05:10", title: { ar: "التحضير المنظم لمهارة سريرية", en: "Preparing for a clinical skill" }, description: { ar: "رتّب خطوات التعلّم والممارسة والتأمل.", en: "Organize learning, practice, and reflection." }, lesson: { ar: "حدد هدفاً تعليمياً واضحاً، وتعرف إلى التسلسل العام للمهارة من مصدر مناسب، ثم تدرب في بيئة تعليمية آمنة وتحت الإشراف المطلوب. اختم بملاحظة ما سار جيداً وما يحتاج إلى ممارسة أخرى.", en: "Set a clear learning objective, review the broad sequence using an appropriate source, then practice in a safe learning setting with appropriate supervision. Finish by noting what went well and what you would practice next." } },
-  { id: "video-notes", duration: "02:55", title: { ar: "ملاحظات مختصرة قابلة للمراجعة", en: "Concise notes you can revisit" }, description: { ar: "اختر الكلمات المفتاحية بدلاً من نسخ النصوص.", en: "Choose key phrases instead of copying passages." }, lesson: { ar: "اكتب فكرة مركزية بكلماتك، وأضف سؤالاً يختبر استدعاءها. افصل بين ما تعرفه وما تريد التحقق منه، واربط الملاحظة بتاريخ أو موضوع كي يسهل الرجوع إليها.", en: "Write a central idea in your own words and add a question that tests recall. Separate what you know from what you want to verify, and tag the note with a date or topic for easier retrieval." } },
-  { id: "video-goals", duration: "03:30", title: { ar: "تقسيم الهدف إلى جلسات صغيرة", en: "Breaking a goal into small sessions" }, description: { ar: "خطط لمراجعة عملية تلائم وقتك اليومي.", en: "Plan a practical review that fits your day." }, lesson: { ar: "اختر مهمة يمكن إنجازها خلال الفترة المتاحة، مثل مراجعة مفهومين أو الإجابة عن عدد قليل من الأسئلة. بعد الجلسة، قيّم مدى واقعية الخطة وعدّل الهدف القادم عند الحاجة.", en: "Choose a task that fits the available time, such as reviewing two concepts or answering a few questions. After the session, check whether the plan was realistic and adjust the next goal if needed." } },
-  { id: "video-reflect", duration: "04:05", title: { ar: "التأمل بعد المحاكاة", en: "Reflecting after a simulation" }, description: { ar: "التقط فكرة تعلمتها وسؤالاً تود استكشافه.", en: "Capture one learning point and one question to explore." }, lesson: { ar: "بعد محاكاة تعليمية، دوّن نقطة تواصل نجحت فيها، وسؤالاً لم تطرحه، وخطوة تريد تجربتها في المرة القادمة. تذكّر أن المحاكاة فرصة للتعلم وليست تقييماً سريرياً حقيقياً.", en: "After an educational simulation, note one communication behavior that worked, one question you missed, and one step to try next time. Remember that a simulation is a learning opportunity, not a real clinical assessment." } }
+const deckCatalog = [
+  { id: "core", label: "deckCore", specialty: "foundations", folder: "Foundations" },
+  { id: "cardio", label: "deckCardio", specialty: "foundations", folder: "Cardiology" },
+  { id: "learning", label: "deckLearning", specialty: "ebm", folder: "Study skills" },
+  { id: "ebm", label: "deckEbm", specialty: "ebm", folder: "Evidence review" },
+  { id: "entEar", label: "deckEntEar", specialty: "ent", folder: "Ear" },
+  { id: "entLarynx", label: "deckEntLarynx", specialty: "ent", folder: "Larynx" },
+  { id: "entNose", label: "deckEntNose", specialty: "ent", folder: "Nose" },
+  { id: "entPharynx", label: "deckEntPharynx", specialty: "ent", folder: "Pharynx" },
+  { id: "family", label: "deckFamily", specialty: "family", folder: "Consultation" },
+  { id: "ophthalmology", label: "deckOphthalmology", specialty: "ophthalmology", folder: "Observation" }
 ];
+
+const videos = [
+  { id: "video-listening", specialty: "family", folder: "Communication", duration: "04:20", title: { ar: "الإنصات الفعّال: تمرين قصير", en: "Active listening: a short exercise" }, description: { ar: "خطوات بسيطة لملاحظة ما يقوله المريض وما يهمه.", en: "Simple steps for noticing what a patient says and what matters to them." }, lesson: { ar: "ابدأ بإتاحة مساحة للمتحدث كي يشرح فكرته. لاحظ الكلمات والمشاعر، ولا تتعجل الانتقال إلى الحلول. استخدم تلخيصاً قصيراً للتأكد من فهمك، ثم اسأل سؤالاً مفتوحاً عمّا يود إضافته.", en: "Give the speaker space to explain their perspective. Notice both words and feelings, and avoid rushing to solutions. Offer a brief summary to check your understanding, then ask an open question about anything they would like to add." } },
+  { id: "video-recall", specialty: "ebm", folder: "Study methods", duration: "03:45", title: { ar: "كيف تراجع بالتذكّر النشط؟", en: "How to revise with active recall" }, description: { ar: "حوّل فقرة قصيرة إلى أسئلة للمراجعة الذاتية.", en: "Turn a short passage into self-review prompts." }, lesson: { ar: "بعد قراءة فكرة واحدة، أغلق المصدر واكتب ما تتذكره. قارِن إجابتك بالمادة الأصلية، وحدد فجوة واحدة للمراجعة. أعد المحاولة بعد فاصل زمني بدلاً من تكرار القراءة مباشرة.", en: "After reading one idea, close the source and write what you remember. Compare your response with the original material and identify one gap to revisit. Try again after an interval rather than immediately rereading." } },
+  { id: "video-exam", specialty: "ent", folder: "Larynx", duration: "05:10", title: { ar: "التحضير المنظم لمهارة سريرية", en: "Preparing for a clinical skill" }, description: { ar: "رتّب خطوات التعلّم والممارسة والتأمل.", en: "Organize learning, practice, and reflection." }, lesson: { ar: "حدد هدفاً تعليمياً واضحاً، وتعرف إلى التسلسل العام للمهارة من مصدر مناسب، ثم تدرب في بيئة تعليمية آمنة وتحت الإشراف المطلوب. اختم بملاحظة ما سار جيداً وما يحتاج إلى ممارسة أخرى.", en: "Set a clear learning objective, review the broad sequence using an appropriate source, then practice in a safe learning setting with appropriate supervision. Finish by noting what went well and what you would practice next." } },
+  { id: "video-notes", specialty: "ophthalmology", folder: "Observation", duration: "02:55", title: { ar: "ملاحظات مختصرة قابلة للمراجعة", en: "Concise notes you can revisit" }, description: { ar: "اختر الكلمات المفتاحية بدلاً من نسخ النصوص.", en: "Choose key phrases instead of copying passages." }, lesson: { ar: "اكتب فكرة مركزية بكلماتك، وأضف سؤالاً يختبر استدعاءها. افصل بين ما تعرفه وما تريد التحقق منه، واربط الملاحظة بتاريخ أو موضوع كي يسهل الرجوع إليها.", en: "Write a central idea in your own words and add a question that tests recall. Separate what you know from what you want to verify, and tag the note with a date or topic for easier retrieval." } },
+  { id: "video-goals", specialty: "family", folder: "Planning", duration: "03:30", title: { ar: "تقسيم الهدف إلى جلسات صغيرة", en: "Breaking a goal into small sessions" }, description: { ar: "خطط لمراجعة عملية تلائم وقتك اليومي.", en: "Plan a practical review that fits your day." }, lesson: { ar: "اختر مهمة يمكن إنجازها خلال الفترة المتاحة، مثل مراجعة مفهومين أو الإجابة عن عدد قليل من الأسئلة. بعد الجلسة، قيّم مدى واقعية الخطة وعدّل الهدف القادم عند الحاجة.", en: "Choose a task that fits the available time, such as reviewing two concepts or answering a few questions. After the session, check whether the plan was realistic and adjust the next goal if needed." } },
+  { id: "video-reflect", specialty: "ebm", folder: "Study methods", duration: "04:05", title: { ar: "التأمل بعد المحاكاة", en: "Reflecting after a simulation" }, description: { ar: "التقط فكرة تعلمتها وسؤالاً تود استكشافه.", en: "Capture one learning point and one question to explore." }, lesson: { ar: "بعد محاكاة تعليمية، دوّن نقطة تواصل نجحت فيها، وسؤالاً لم تطرحه، وخطوة تريد تجربتها في المرة القادمة. تذكّر أن المحاكاة فرصة للتعلم وليست تقييماً سريرياً حقيقياً.", en: "After an educational simulation, note one communication behavior that worked, one question you missed, and one step to try next time. Remember that a simulation is a learning opportunity, not a real clinical assessment." } },
+  { id: "video-consent", specialty: "ent", folder: "Ear", duration: "03:15", title: { ar: "الموافقة والراحة في المحاكاة", en: "Consent and comfort in simulation" }, description: { ar: "راجع التواصل حول الموافقة وإمكانية التوقف.", en: "Review communication about consent and the option to pause." }, lesson: { ar: "قبل نشاط تمثيلي، اشرح الهدف والخطوات المتوقعة وحدود المحاكاة. تحقق من موافقة المشارك وذكّره بإمكانية التوقف أو طلب استراحة في أي وقت.", en: "Before a role-play activity, explain its goal, expected steps, and simulation limits. Confirm participant agreement and remind them they can pause or request a break at any time." } },
+  { id: "video-observation", specialty: "ophthalmology", folder: "Documentation", duration: "03:40", title: { ar: "الفصل بين الملاحظة والتفسير", en: "Separating observation from interpretation" }, description: { ar: "اكتب ما تمت ملاحظته مباشرة قبل استخلاص المعنى.", en: "Record what was directly observed before drawing meaning." }, lesson: { ar: "في التمرين التعليمي، دوّن أولاً ما تلاحظه مباشرة بعبارات واضحة. بعد ذلك ناقش التفسيرات المحتملة وحدودها مع المشرف، وتجنب تحويل ملاحظة منفردة إلى استنتاج دون سياق.", en: "In a learning exercise, first record what you directly observe in clear language. Then discuss possible interpretations and their limits with a supervisor; avoid turning a single observation into a conclusion without context." } },
+  { id: "video-evidence", specialty: "ebm", folder: "Critical appraisal", duration: "04:30", title: { ar: "قراءة ملخص دراسة بحذر", en: "Reading a study abstract carefully" }, description: { ar: "ميّز السؤال والتصميم والقيود قبل مناقشة النتائج.", en: "Identify the question, design, and limitations before discussing results." }, lesson: { ar: "ابدأ بالسؤال الذي تحاول الدراسة الإجابة عنه، ثم لاحظ من شملتهم وكيف جُمعت المعلومات. اقرأ النتائج مع القيود والسياق، ولا تعتبر الملخص وحده بديلاً عن مراجعة المصادر الكاملة أو الإشراف.", en: "Start with the question the study set out to address, then note who was included and how information was collected. Read the results alongside limitations and context; an abstract alone is not a substitute for reviewing full sources or supervision." } }
+];
+
+const folderLabels = {
+  Foundations: { ar: "الأساسيات", en: "Foundations" },
+  Cardiology: { ar: "القلب", en: "Cardiology" },
+  "Study skills": { ar: "مهارات الدراسة", en: "Study skills" },
+  "Evidence review": { ar: "مراجعة الأدلة", en: "Evidence review" },
+  Ear: { ar: "الأذن", en: "Ear" },
+  Larynx: { ar: "الحنجرة", en: "Larynx" },
+  Nose: { ar: "الأنف", en: "Nose" },
+  Pharynx: { ar: "البلعوم", en: "Pharynx" },
+  Consultation: { ar: "المقابلة", en: "Consultation" },
+  Observation: { ar: "الملاحظة", en: "Observation" },
+  Communication: { ar: "التواصل", en: "Communication" },
+  "Critical appraisal": { ar: "التقييم النقدي", en: "Critical appraisal" },
+  "Study methods": { ar: "أساليب الدراسة", en: "Study methods" },
+  Documentation: { ar: "التوثيق", en: "Documentation" },
+  Planning: { ar: "التخطيط", en: "Planning" }
+};
+const folderText = (folder) => text(folderLabels[folder] || folder);
 
 const osceChecklist = [
   { ar: "عرّف بنفسك وتحقق من الاسم والطريقة المفضلة للمخاطبة.", en: "Introduce yourself and confirm the name and preferred form of address." },
@@ -1132,6 +1397,43 @@ const osceChecklist = [
   { ar: "تحقق من أثر المشكلة على الأنشطة اليومية.", en: "Ask how the concern affects daily activities." },
   { ar: "لخّص ما فهمته واسأل إن كان هناك ما يرغب المريض بإضافته.", en: "Summarize what you understood and ask if the patient would like to add anything." }
 ];
+
+const osceStations = {
+  interview: {
+    title: "caseInterview",
+    patient: {
+      ar: "أشعر بضيق في النفس عندما أمشي بسرعة منذ بضعة أيام، وأود أن أفهم ما الذي يحدث.",
+      en: "I've felt short of breath when walking quickly for a few days, and I'd like to understand what's going on."
+    },
+    checklist: osceChecklist
+  },
+  sharedPlan: {
+    title: "caseSharedPlan",
+    patient: {
+      ar: "أود أن أعرف ما الخطوات التعليمية التالية وكيف يمكنني طرح أسئلتي.",
+      en: "I'd like to understand the next learning steps and how I can ask questions."
+    },
+    checklist: [
+      { ar: "اسأل الشخص عمّا يأمل فهمه من الحوار.", en: "Ask what the person hopes to understand from the conversation." },
+      { ar: "اشرح الخيارات المتاحة بلغة واضحة ومحايدة.", en: "Explain the available options in clear, neutral language." },
+      { ar: "تحقق من تفضيلات الشخص وأسئلته.", en: "Check the person's preferences and questions." },
+      { ar: "لخّص النقاط المتفق عليها والخطوات التعليمية التالية.", en: "Summarize shared points and the next learning steps." }
+    ]
+  },
+  structure: {
+    title: "caseChecklist",
+    patient: {
+      ar: "أشعر ببعض التوتر من المقابلة، وسيكون من المفيد أن أعرف ما الذي سيحدث.",
+      en: "I feel a little nervous about the interview, and it would help to know what will happen."
+    },
+    checklist: [
+      { ar: "عرّف بنفسك وبيّن الهدف من المحاكاة.", en: "Introduce yourself and explain the aim of the simulation." },
+      { ar: "تحقق من موافقة المشارك وراحته.", en: "Check the participant's agreement and comfort." },
+      { ar: "اشرح التسلسل العام وأتح فرصة للأسئلة.", en: "Explain the broad sequence and invite questions." },
+      { ar: "ذكّر المشارك بإمكانية التوقف أو طلب استراحة.", en: "Remind the participant they can pause or request a break." }
+    ]
+  }
+};
 
 const offlinePackCatalog = [
   { id: "foundations-quiz", type: "quiz", topic: "foundations", label: "foundations", questionTypes: ["mcq"] },
@@ -1145,7 +1447,14 @@ const offlinePackCatalog = [
   { id: "clinical-quiz", type: "quiz", topic: "clinical", label: "clinical", questionTypes: ["mcq"] },
   { id: "clinical-bank", type: "qbank", topic: "clinical", label: "clinical", questionTypes: ["mcq", "written"] },
   { id: "clinical-written", type: "written", topic: "clinical", label: "clinical", questionTypes: ["written"] },
-  { id: "learning-flashcards", type: "flashcards", topic: "clinical", label: "clinical", deck: "learning" }
+  { id: "learning-flashcards", type: "flashcards", topic: "clinical", label: "clinical", deck: "learning" },
+  ...deckCatalog.filter((deck) => !["core", "cardio", "learning"].includes(deck.id)).map((deck) => ({
+    id: `${deck.id}-flashcards`,
+    type: "flashcards",
+    topic: deck.specialty,
+    label: deck.specialty,
+    deck: deck.id
+  }))
 ];
 
 const STORAGE_KEY = "namaa-study-demo-v1";
@@ -1176,10 +1485,18 @@ const defaultState = () => ({
   dismissedQuestions: [],
   savedArticles: [],
   offlineArticles: [],
+  articleNotes: {},
+  articleHighlights: {},
+  readerSettings: { fontSize: 100, zoom: 100, typeface: "sans", spacing: "cozy", width: "normal", highlightMode: false, highlightColor: "yellow" },
   offlinePacks: [],
   completedVideos: [],
-  cardRatings: { core: 0, cardio: 0, learning: 0 },
+  videoProgress: {},
+  cardRatings: Object.fromEntries(deckCatalog.map((deck) => [deck.id, 0])),
+  cardSchedule: {},
+  cardReviewLog: [],
   osceChecks: [],
+  osceStation: "interview",
+  osceStationChecks: {},
   achievements: [],
   updatedAt: new Date(0).toISOString(),
   activeSession: null
@@ -1209,10 +1526,18 @@ function loadState() {
       dismissedQuestions: Array.isArray(saved.dismissedQuestions) ? saved.dismissedQuestions.filter((id) => questions.some((question) => question.id === id)) : [],
       savedArticles: Array.isArray(saved.savedArticles) ? saved.savedArticles : [],
       offlineArticles: Array.isArray(saved.offlineArticles) ? saved.offlineArticles : [],
+      articleNotes: sanitizeArticleMap(saved.articleNotes, 5000),
+      articleHighlights: sanitizeArticleHighlights(saved.articleHighlights),
+      readerSettings: sanitizeReaderSettings(saved.readerSettings),
       offlinePacks: Array.isArray(saved.offlinePacks) ? saved.offlinePacks : [],
       completedVideos: Array.isArray(saved.completedVideos) ? saved.completedVideos : [],
-      cardRatings: { ...initial.cardRatings, ...(saved.cardRatings || {}) },
+      cardRatings: Object.fromEntries(Object.keys(initial.cardRatings).map((key) => [key, Math.max(0, Math.min(10000, Number(saved.cardRatings?.[key]) || 0))])),
+      cardSchedule: sanitizeCardSchedule(saved.cardSchedule),
+      cardReviewLog: sanitizeCardReviewLog(saved.cardReviewLog),
+      videoProgress: sanitizeVideoProgress(saved.videoProgress, saved.completedVideos),
       osceChecks: Array.isArray(saved.osceChecks) ? saved.osceChecks : [],
+      osceStation: ["interview", "sharedPlan", "structure"].includes(saved.osceStation) ? saved.osceStation : "interview",
+      osceStationChecks: sanitizeOsceStationChecks(saved.osceStationChecks),
       achievements: Array.isArray(saved.achievements) ? saved.achievements : []
     };
   } catch (error) {
@@ -1232,7 +1557,10 @@ let showDismissedQuestions = false;
 let settingsCategory = "index";
 let qbankSettings = { mode: "tutor", source: "all", progress: "all", type: "all", difficulty: "all", count: "5", order: "mixed" };
 let articleFilters = { query: "", category: "all", savedOnly: false };
-let flashcard = { deck: "core", index: 0, flipped: false };
+let flashcard = { deck: "core", index: 0, flipped: false, studying: false };
+let deckSearch = "";
+let videoFilters = { specialty: "all", folder: "all", status: "all", query: "", sort: "default" };
+let videoPlayer = { autoplay: false, speed: 1 };
 let downloadTypeFilter = "all";
 let expandedDownloadTopics = new Set(["foundations", "cardio", "clinical"]);
 let toastTimer = null;
@@ -1683,33 +2011,266 @@ function renderArticleCard(article) {
 }
 
 function renderFlashcards() {
-  const cardSet = decks[flashcard.deck];
-  const active = cardSet[flashcard.index % cardSet.length];
-  return `<div class="page-heading"><div><p class="eyebrow">${t("flashcardsEyebrow")}</p><h1>${t("cardsTitle")}</h1><p class="page-subtitle">${t("cardsDesc")}</p></div><button class="btn btn-secondary" data-action="navigate" data-route="learn">${t("backToLearn")}</button></div>
-    <div class="field" style="max-width:340px"><label for="deck-select">${t("chooseDeck")}</label><select class="control" id="deck-select">${deckOptions()}</select></div>
-    <div class="flashcard-stage"><button class="flashcard" data-action="flip-card" aria-label="${t("flipCard")}"><p class="eyebrow">${t(flashcard.flipped ? "sampleAnswer" : "cardCount", { current: flashcard.index + 1, total: cardSet.length })}</p><h2>${flashcard.flipped ? text(active.back) : text(active.front)}</h2>${!flashcard.flipped ? `<span class="text-muted text-small">${t("flipCard")} ↓</span>` : ""}</button></div>
-    <div class="flashcard-controls"><button class="btn btn-secondary" data-action="previous-card">${t("previousCard")}</button><button class="btn btn-secondary" data-action="rate-card" data-rating="review">${t("reviewAgain")}</button><button class="btn btn-primary" data-action="rate-card" data-rating="known">${t("knewIt")}</button><button class="btn btn-secondary" data-action="next-card">${t("nextCard")}</button></div>
-    <p class="text-muted text-small" style="text-align:center;margin-top:14px">${t("demoNotice")}</p>`;
+  const cards = getFlashcardQueue();
+  const title = `<div class="page-heading"><div><p class="eyebrow">${t("flashcardsEyebrow")}</p><h1>${t("cardsTitle")}</h1><p class="page-subtitle">${t("cardsDesc")}</p></div><button class="btn btn-secondary" data-action="navigate" data-route="learn">${t("backToLearn")}</button></div>`;
+  if (!flashcard.studying) return `${title}${renderDeckBrowser()}`;
+  if (!cards.length) return `${title}<section class="empty-state card"><h2>${t("noCardsDue")}</h2><button class="btn btn-primary" data-action="exit-flashcards">${t("backToFolders")}</button></section>`;
+  const active = cards[flashcard.index];
+  const currentProgress = getCardSchedule(active.key);
+  const nextReview = currentProgress?.dueAt ? new Date(currentProgress.dueAt).toLocaleDateString(lang(), { month: "short", day: "numeric" }) : "—";
+  return `${title}<section class="flashcard-session">
+    <div class="flashcard-session-heading"><button class="btn btn-secondary" data-action="exit-flashcards">${t("backToFolders")}</button><span class="badge">${t("cardProgress", { current: flashcard.index + 1, total: cards.length })}</span><button class="small-action" data-action="restart-flashcards">${t("studyAll")}</button></div>
+    <div class="flashcard-stage"><button class="flashcard" data-action="flip-card" aria-label="${t("flipCard")}"><p class="eyebrow">${t(flashcard.flipped ? "sampleAnswer" : "cardCount", { current: flashcard.index + 1, total: cards.length })}</p><h2>${flashcard.flipped ? text(active.card.back) : text(active.card.front)}</h2>${!flashcard.flipped ? `<span class="text-muted text-small">${t("flipCard")} ↓</span>` : ""}</button></div>
+    <div class="flashcard-session-meta"><span>${t("nextReview")}: ${escapeHtml(nextReview)}</span><span>${t("dueCards")}: ${getDeckStats(flashcard.deck).due}</span></div>
+    <div class="flashcard-controls"><button class="btn btn-secondary" data-action="previous-card" ${flashcard.index === 0 ? "disabled" : ""}>${t("previousCard")}</button><button class="btn btn-danger" data-action="rate-card" data-rating="again">${t("ratingAgain")} · 1</button><button class="btn btn-secondary" data-action="rate-card" data-rating="hard">${t("ratingHard")} · 2</button><button class="btn btn-primary" data-action="rate-card" data-rating="good">${t("ratingGood")} · 3</button><button class="btn btn-secondary" data-action="rate-card" data-rating="easy">${t("ratingEasy")} · 4</button><button class="btn btn-secondary" data-action="next-card" ${flashcard.index >= cards.length - 1 ? "disabled" : ""}>${t("nextCard")}</button></div>
+    <p class="text-muted text-small" style="text-align:center;margin-top:14px">${t("demoNotice")}</p>
+  </section>`;
 }
 
-function deckOptions() {
-  const deckNames = { core: "deckCore", cardio: "deckCardio", learning: "deckLearning" };
-  return Object.entries(deckNames).map(([key, name]) => `<option value="${key}"${flashcard.deck === key ? " selected" : ""}>${t(name)}</option>`).join("");
+function getCardSchedule(key) {
+  return state.cardSchedule[key];
+}
+
+function sanitizeCardSchedule(source) {
+  if (!source || typeof source !== "object" || Array.isArray(source)) return {};
+  const validKeys = new Set(deckCatalog.flatMap((deck) => (decks[deck.id] || []).map((_, index) => `${deck.id}:${index}`)));
+  return Object.fromEntries(Object.entries(source).filter(([key, value]) =>
+    validKeys.has(key) && value && typeof value === "object" && Number.isFinite(Date.parse(value.dueAt))
+  ).map(([key, value]) => [key, {
+    dueAt: new Date(value.dueAt).toISOString(),
+    intervalDays: Math.max(0, Math.min(10000, Number(value.intervalDays) || 0)),
+    ease: Math.max(1.3, Math.min(3.5, Number(value.ease) || 2.5)),
+    repetitions: Math.max(0, Math.min(10000, Number(value.repetitions) || 0)),
+    lastRating: ["again", "hard", "good", "easy"].includes(value.lastRating) ? value.lastRating : "good"
+  }]));
+}
+
+function sanitizeCardReviewLog(source) {
+  if (!Array.isArray(source)) return [];
+  const cardKeys = new Set(deckCatalog.flatMap((deck) => (decks[deck.id] || []).map((_, index) => `${deck.id}:${index}`)));
+  return source.slice(-5000).filter((entry) =>
+    entry && cardKeys.has(entry.key) && ["again", "hard", "good", "easy"].includes(entry.rating) &&
+    typeof entry.at === "string" && Number.isFinite(Date.parse(entry.at))
+  ).map((entry) => ({ key: entry.key, rating: entry.rating, at: new Date(entry.at).toISOString() }));
+}
+
+function sanitizeArticleMap(source, maxLength) {
+  if (!source || typeof source !== "object" || Array.isArray(source)) return {};
+  return Object.fromEntries(Object.entries(source)
+    .filter(([id, value]) => articles.some((article) => article.id === id) && typeof value === "string")
+    .map(([id, value]) => [id, value.slice(0, maxLength)]));
+}
+
+function sanitizeArticleHighlights(source) {
+  if (!source || typeof source !== "object" || Array.isArray(source)) return {};
+  return Object.fromEntries(Object.entries(source)
+    .filter(([id, quotes]) => articles.some((article) => article.id === id) && Array.isArray(quotes))
+    .map(([id, quotes]) => [id, quotes.map((quote) => typeof quote === "string" ? { text: quote, color: "yellow" } : quote)
+      .filter((quote) => quote && typeof quote.text === "string" && quote.text.trim())
+      .map((quote) => ({ text: quote.text.trim().slice(0, 1000), color: ["yellow", "green", "blue", "pink", "purple", "orange"].includes(quote.color) ? quote.color : "yellow" }))
+      .filter((quote, index, list) => list.findIndex((item) => item.text === quote.text && item.color === quote.color) === index)
+      .slice(0, 100)]));
+}
+
+function sanitizeReaderSettings(source) {
+  const settings = source && typeof source === "object" ? source : {};
+  return {
+    fontSize: Math.max(80, Math.min(140, Number(settings.fontSize) || 100)),
+    zoom: Math.max(80, Math.min(130, Number(settings.zoom) || 100)),
+    typeface: settings.typeface === "serif" ? "serif" : "sans",
+    spacing: ["compact", "cozy", "relaxed"].includes(settings.spacing) ? settings.spacing : "cozy",
+    width: settings.width === "wide" ? "wide" : "normal",
+    highlightMode: Boolean(settings.highlightMode),
+    highlightColor: ["yellow", "green", "blue", "pink", "purple", "orange"].includes(settings.highlightColor) ? settings.highlightColor : "yellow"
+  };
+}
+
+function sanitizeVideoProgress(source, completedIds = []) {
+  if (!source || typeof source !== "object" || Array.isArray(source)) source = {};
+  const progress = Object.fromEntries(Object.entries(source).filter(([id]) => videos.some((video) => video.id === id))
+    .map(([id, value]) => [id, Math.max(0, Math.min(100, Number(value) || 0))]));
+  if (Array.isArray(completedIds)) {
+    for (const id of completedIds) if (videos.some((video) => video.id === id)) progress[id] = 100;
+  }
+  return progress;
+}
+
+function sanitizeOsceStationChecks(source) {
+  if (!source || typeof source !== "object" || Array.isArray(source)) return {};
+  return Object.fromEntries(Object.entries(source).filter(([station]) => osceStations[station])
+    .map(([station, checks]) => [station, Array.isArray(checks)
+      ? [...new Set(checks.filter((index) => Number.isInteger(index) && index >= 0 && index < osceStations[station].checklist.length))]
+      : []]));
+}
+
+function getFlashcardQueue(deckId = flashcard.deck) {
+  if (flashcard.studying && deckId === flashcard.deck && Array.isArray(flashcard.queue)) return flashcard.queue;
+  const selectedDecks = deckId === "all" ? deckCatalog : deckCatalog.filter((deck) => deck.id === deckId);
+  return selectedDecks.flatMap((deck) => (decks[deck.id] || []).map((card, index) => ({
+    key: `${deck.id}:${index}`,
+    deck: deck.id,
+    index,
+    card
+  }))).filter((item) => {
+    const schedule = getCardSchedule(item.key);
+    return !schedule || Date.parse(schedule.dueAt) <= Date.now();
+  });
+}
+
+function startFlashcardStudy(deckId) {
+  const wasStudying = flashcard.studying;
+  flashcard.studying = false;
+  const queue = getFlashcardQueue(deckId);
+  flashcard.deck = deckId;
+  flashcard.queue = queue;
+  flashcard.index = 0;
+  flashcard.flipped = false;
+  flashcard.studying = true;
+  if (!queue.length && wasStudying) flashcard.studying = true;
+  if (!flashcard.queue.length) showToast(t("noCardsDue"));
+  render();
+}
+
+function rateCurrentCard(rating) {
+  const cards = getFlashcardQueue();
+  const active = cards[flashcard.index];
+  if (!active) return;
+  const previous = getCardSchedule(active.key);
+  const oldInterval = Number(previous?.intervalDays) || 0;
+  const oldEase = Number(previous?.ease) || 2.5;
+  let intervalDays;
+  let dueAt;
+  let repetitions = Number(previous?.repetitions) || 0;
+  if (rating === "again") {
+    intervalDays = 0;
+    dueAt = Date.now() + 60_000;
+    repetitions = 0;
+  } else {
+    repetitions += 1;
+    if (rating === "hard") intervalDays = Math.max(1, Math.round((oldInterval || 1) * 1.2));
+    else if (rating === "easy") intervalDays = Math.max(4, Math.round((oldInterval || 1) * oldEase * 1.3));
+    else intervalDays = oldInterval ? Math.max(1, Math.round(oldInterval * oldEase)) : 1;
+    dueAt = Date.now() + intervalDays * 24 * 60 * 60 * 1000;
+  }
+  const ease = Math.max(1.3, oldEase + (rating === "easy" ? 0.15 : rating === "hard" ? -0.15 : 0));
+  state.cardSchedule[active.key] = { dueAt: new Date(dueAt).toISOString(), intervalDays, ease, repetitions, lastRating: rating };
+  state.cardRatings[active.deck] = (state.cardRatings[active.deck] || 0) + 1;
+  state.cardReviewLog.push({ key: active.key, rating, at: new Date().toISOString() });
+  state.cardReviewLog = state.cardReviewLog.slice(-5000);
+  persist();
+  if (flashcard.index >= cards.length - 1) {
+    flashcard.studying = false;
+    flashcard.queue = [];
+    showToast(t("studyComplete"));
+  } else flashcard.index += 1;
+  flashcard.flipped = false;
+  render();
+}
+
+function getDeckStats(deckId) {
+  const selectedDecks = deckId === "all" ? deckCatalog : deckCatalog.filter((deck) => deck.id === deckId);
+  let total = 0;
+  let due = 0;
+  let fresh = 0;
+  for (const deck of selectedDecks) {
+    (decks[deck.id] || []).forEach((_, index) => {
+      total += 1;
+      const schedule = getCardSchedule(`${deck.id}:${index}`);
+      if (!schedule) fresh += 1;
+      else if (Date.parse(schedule.dueAt) <= Date.now()) due += 1;
+    });
+  }
+  return { total, due, fresh };
+}
+
+function getFlashcardSummary() {
+  const stats = getDeckStats("all");
+  const schedules = Object.values(state.cardSchedule);
+  const matured = schedules.filter((entry) => Number(entry.intervalDays) >= 7).length;
+  const retentionWindow = state.cardReviewLog.filter((entry) => Date.now() - Date.parse(entry.at) <= 30 * 24 * 60 * 60 * 1000);
+  const retained = retentionWindow.filter((entry) => entry.rating === "good" || entry.rating === "easy").length;
+  const reviewedToday = state.cardReviewLog.filter((entry) => dateKey(new Date(entry.at)) === todayKey()).length;
+  const cardTypes = deckCatalog.flatMap((deck) => decks[deck.id] || []).reduce((summary, card) => {
+    if (card.type === "cloze") summary.cloze += 1;
+    else summary.basic += 1;
+    return summary;
+  }, { basic: 0, cloze: 0 });
+  return {
+    due: stats.due,
+    fresh: stats.fresh,
+    total: stats.total,
+    deckCount: deckCatalog.length,
+    reviewed: schedules.length,
+    mastery: stats.total ? Math.round((matured / stats.total) * 100) : 0,
+    retention: retentionWindow.length ? Math.round((retained / retentionWindow.length) * 100) : 0,
+    reviewedToday,
+    cardTypes
+  };
+}
+
+function getDeckPackId(deckId) {
+  return ({ core: "foundation-flashcards", cardio: "cardio-flashcards", learning: "learning-flashcards" })[deckId] || `${deckId}-flashcards`;
+}
+
+function renderDeckBrowser() {
+  const totals = getFlashcardSummary();
+  const filteredDecks = deckCatalog.filter((deck) => {
+    const query = deckSearch.trim().toLocaleLowerCase();
+    return !query || `${t(deck.label)} ${t(deck.specialty)} ${deck.folder}`.toLocaleLowerCase().includes(query);
+  });
+  const specialties = [["ebm", "ebm"], ["ent", "ent"], ["family", "family"], ["ophthalmology", "ophthalmology"], ["foundations", "foundations"]];
+  const groups = specialties.map(([id, label]) => {
+    const groupDecks = filteredDecks.filter((deck) => deck.specialty === id);
+    if (!groupDecks.length) return "";
+    return `<section class="deck-group card"><div class="section-heading" style="margin-top:0"><div><p class="eyebrow">${t("videoFolder")}</p><h2>${t(label)}</h2></div><span class="badge">${t("totalCards")}: ${groupDecks.reduce((sum, deck) => sum + getDeckStats(deck.id).total, 0)}</span></div><div class="deck-grid">${groupDecks.map((deck) => {
+      const stats = getDeckStats(deck.id);
+      const packId = getDeckPackId(deck.id);
+      const downloaded = state.offlinePacks.includes(packId);
+      return `<article class="deck-card"><div><span class="eyebrow">${folderText(deck.folder)}</span><h3>${t(deck.label)}</h3><p>${t("dueCards")}: ${stats.due} · ${t("newCards")}: ${stats.fresh} · ${t("totalCards")}: ${stats.total}</p></div><div class="article-actions"><button class="btn btn-primary" data-action="start-flashcard-deck" data-id="${deck.id}">${t("studyAll")}</button><button class="small-action${downloaded ? " saved" : ""}" data-action="toggle-pack" data-id="${packId}">${downloaded ? t("deckDownloaded") : t("deckDownload")}</button></div></article>`;
+    }).join("")}</div></section>`;
+  }).join("");
+  return `<section class="deck-overview card"><div class="section-heading" style="margin-top:0"><div><p class="eyebrow">${t("flashcardsEyebrow")}</p><h2>${t("cardsTitle")}</h2></div><div class="welcome-actions"><button class="btn btn-secondary" data-action="export-anki">${t("exportAnki")}</button><button class="btn btn-primary" data-action="start-flashcards-all">${t("studyAll")}</button></div></div><div class="deck-stats"><div class="insight-card"><small>${t("dueCards")}</small><strong>${totals.due}</strong></div><div class="insight-card"><small>${t("newCards")}</small><strong>${totals.fresh}</strong></div><div class="insight-card"><small>${t("totalCards")}</small><strong>${totals.total}</strong></div><div class="insight-card"><small>${t("deckCount")}</small><strong>${totals.deckCount}</strong></div><div class="insight-card"><small>${t("mastery")}</small><strong>${totals.mastery}%</strong></div><div class="insight-card"><small>${t("reviewedCards")}</small><strong>${totals.reviewed}</strong></div><div class="insight-card"><small>${t("retention")}</small><strong>${totals.retention}%</strong></div><div class="insight-card"><small>${t("reviewedToday")}</small><strong>${totals.reviewedToday}</strong></div><div class="insight-card"><small>${t("basicCards")} / ${t("clozeCards")}</small><strong>${totals.cardTypes.basic} / ${totals.cardTypes.cloze}</strong></div></div><input class="control search-control" id="deck-search" type="search" value="${escapeHtml(deckSearch)}" placeholder="${t("deckSearch")}" aria-label="${t("deckSearch")}"></section>${groups || `<div class="empty-state card">${t("noMatchingQuestions")}</div>`}`;
 }
 
 function renderOsce() {
-  const checked = state.osceChecks.length;
+  const station = osceStations[state.osceStation] || osceStations.interview;
+  const checklist = station.checklist;
+  const checkedItems = state.osceStation === "interview" ? state.osceChecks : (state.osceStationChecks[state.osceStation] || []);
+  const checked = checkedItems.length;
   return `<div class="page-heading"><div><p class="eyebrow">${t("osceEyebrow")}</p><h1>${t("osceTitle")}</h1><p class="page-subtitle">${t("caseDisclaimer")}</p></div><button class="btn btn-secondary" data-action="navigate" data-route="learn">${t("backToLearn")}</button></div>
-    <div class="case-layout"><section class="case-card card"><span class="badge">${t("demoContent")}</span><h2 style="margin-top:14px">${t("caseTitle")}</h2><p class="page-subtitle">${lang() === "ar" ? "تعرّف إلى تجربة المريض ثم اختر خطوات المقابلة التي تريد التدرب عليها." : "Meet the simulated patient, then choose the interview steps you want to practice."}</p><p class="field-label">${t("patientSays")}</p><blockquote class="patient-quote content-copy">${lang() === "ar" ? "«أشعر بضيق في النفس عندما أمشي بسرعة منذ بضعة أيام، وأود أن أفهم ما الذي يحدث.»" : "“I've felt short of breath when walking quickly for a few days, and I'd like to understand what's going on.”"}</blockquote><div class="note-box">${t("caseDisclaimer")}</div>${state.preferences.osceVoice ? `<button class="btn btn-secondary" data-action="read-case">${t("readCase")}</button>` : ""}</section>
-    <section class="checklist-card card"><div class="card-topline"><h2>${t("checklistTitle")}</h2><span class="badge">${t("checklistProgress", { count: checked, total: osceChecklist.length })}</span></div><div class="checklist">${osceChecklist.map((item, index) => `<label><input type="checkbox" data-osce-item="${index}"${state.osceChecks.includes(index) ? " checked" : ""}><span>${text(item)}</span></label>`).join("")}</div><div class="form-actions"><span class="field-hint">${osceStartedAt ? `${Math.floor((Date.now() - osceStartedAt) / 60000)} ${t("min")}` : t("demoContent")}</span><button class="btn btn-secondary" data-action="reset-osce">${t("resetChecklist")}</button></div></section></div>`;
+    <div class="field" style="max-width:420px"><label for="osce-station">${t("casePicker")}</label><select class="control" id="osce-station">${["interview", "sharedPlan", "structure"].map((id) => `<option value="${id}"${state.osceStation === id ? " selected" : ""}>${t(osceStations[id].title)}</option>`).join("")}</select></div>
+    <div class="case-layout"><section class="case-card card"><span class="badge">${t("demoContent")}</span><h2 style="margin-top:14px">${t(station.title)}</h2><p class="field-label">${t("patientSays")}</p><blockquote class="patient-quote content-copy">${text(station.patient)}</blockquote><div class="note-box">${t("caseDisclaimer")}</div>${state.preferences.osceVoice ? `<button class="btn btn-secondary" data-action="read-case">${t("readCase")}</button>` : ""}</section>
+    <section class="checklist-card card"><div class="card-topline"><h2>${t("checklistTitle")}</h2><span class="badge">${t("checklistProgress", { count: checked, total: checklist.length })}</span></div><div class="checklist">${checklist.map((item, index) => `<label><input type="checkbox" data-osce-item="${index}"${checkedItems.includes(index) ? " checked" : ""}><span>${text(item)}</span></label>`).join("")}</div><div class="form-actions"><span class="field-hint">${osceStartedAt ? `${Math.floor((Date.now() - osceStartedAt) / 60000)} ${t("min")}` : t("demoContent")}</span><button class="btn btn-secondary" data-action="reset-osce">${t("resetChecklist")}</button></div></section></div>`;
 }
 
 function renderVideos() {
-  return `<div class="page-heading"><div><p class="eyebrow">${t("videosEyebrow")}</p><h1>${t("videosTitle")}</h1><p class="page-subtitle">${t("videoDisclaimer")}</p></div><button class="btn btn-secondary" data-action="navigate" data-route="learn">${t("backToLearn")}</button></div>
-    <div class="video-grid">${videos.map((video) => {
+  const specialties = [["ebm", "ebm"], ["ent", "ent"], ["family", "family"], ["ophthalmology", "ophthalmology"]];
+  const filteredBySpecialty = videos.filter((video) => videoFilters.specialty === "all" || video.specialty === videoFilters.specialty);
+  const folders = [...new Set(filteredBySpecialty.map((video) => video.folder))];
+  const filtered = filteredBySpecialty.filter((video) =>
+    (videoFilters.folder === "all" || video.folder === videoFilters.folder) &&
+    (videoFilters.status === "all" || (videoFilters.status === "watched" ? state.completedVideos.includes(video.id) : !state.completedVideos.includes(video.id))) &&
+    (!videoFilters.query.trim() || `${text(video.title)} ${text(video.description)}`.toLocaleLowerCase().includes(videoFilters.query.trim().toLocaleLowerCase()))
+  );
+  if (videoFilters.sort === "title") filtered.sort((a, b) => text(a.title).localeCompare(text(b.title), lang()));
+  if (videoFilters.sort === "duration") filtered.sort((a, b) => a.duration.localeCompare(b.duration));
+  const categoryCards = specialties.map(([id, label]) => {
+    const categoryVideos = videos.filter((video) => video.specialty === id);
+    const folderCount = new Set(categoryVideos.map((video) => video.folder)).size;
+    return `<button class="video-folder-card card" data-action="select-video-specialty" data-id="${id}"><span class="quick-icon">▤</span><strong>${t(label)}</strong><small>${folderCount} ${t("videoFolder")} · ${t("lessonCount", { count: categoryVideos.length })}</small><span class="small-action">${t("openFolder")} ›</span></button>`;
+  }).join("");
+  const specialtyLabel = specialties.find(([id]) => id === videoFilters.specialty)?.[1];
+  const folderButtons = [["all", t("allFolders")], ...folders.map((folder) => [folder, folderText(folder)])].map(([id, label]) => `<button class="tab-button${videoFilters.folder === id ? " active" : ""}" data-action="select-video-folder" data-id="${escapeHtml(id)}" aria-pressed="${videoFilters.folder === id}">${escapeHtml(label)}</button>`).join("");
+  const heading = `<div class="page-heading"><div><p class="eyebrow">${t("videosEyebrow")}</p><h1>${t("videosTitle")}</h1><p class="page-subtitle">${t("videoDisclaimer")}</p></div><button class="btn btn-secondary" data-action="navigate" data-route="learn">${t("backToLearn")}</button></div>`;
+  if (videoFilters.specialty === "all") return `${heading}<div class="video-folder-grid">${categoryCards}</div>`;
+  return `${heading}<div class="video-browser-toolbar"><button class="btn btn-secondary" data-action="select-video-specialty" data-id="all">${t("backToFolders")}</button><span class="badge">${t(specialtyLabel)}</span><input class="control search-control" id="video-search" type="search" value="${escapeHtml(videoFilters.query)}" placeholder="${t("videoSearch")}" aria-label="${t("videoSearch")}"><label for="video-sort">${t("sortLessons")}</label><select class="control" id="video-sort"><option value="default"${videoFilters.sort === "default" ? " selected" : ""}>${t("sortDefault")}</option><option value="title"${videoFilters.sort === "title" ? " selected" : ""}>${t("sortTitle")}</option><option value="duration"${videoFilters.sort === "duration" ? " selected" : ""}>${t("sortDuration")}</option></select></div>
+    <div class="toolbar" role="tablist" aria-label="${t("videoFolder")}">${folderButtons}</div>
+    <div class="toolbar" role="tablist" aria-label="${t("videosTitle")}">${[["all", "allLessons"], ["unwatched", "unwatchedLessons"], ["watched", "watchedLessons"]].map(([id, label]) => `<button class="tab-button${videoFilters.status === id ? " active" : ""}" data-action="set-video-status" data-id="${id}" aria-pressed="${videoFilters.status === id}">${t(label)}</button>`).join("")}</div>
+    <div class="video-grid">${filtered.length ? filtered.map((video) => {
       const complete = state.completedVideos.includes(video.id);
-      return `<article class="video-card card"><button class="video-thumb" data-action="open-video" data-id="${video.id}" aria-label="${t("watchLesson")}: ${escapeHtml(text(video.title))}"><span class="play-icon" aria-hidden="true">${complete ? "✓" : "▶"}</span><span class="video-duration">${video.duration}</span></button><div class="video-info"><div class="card-topline"><span class="badge">${t("demoContent")}</span>${complete ? `<span class="badge">${t("completedStat")}</span>` : ""}</div><h3>${text(video.title)}</h3><p>${text(video.description)}</p><div class="article-actions"><button class="btn btn-secondary" data-action="open-video" data-id="${video.id}">${t("watchLesson")}</button><button class="small-action" data-action="toggle-video" data-id="${video.id}">${complete ? t("markedComplete") : t("markComplete")}</button></div></div></article>`;
-    }).join("")}</div>`;
+      const progress = Math.max(0, Math.min(100, Number(state.videoProgress[video.id]) || 0));
+      return `<article class="video-card card"><button class="video-thumb" data-action="open-video" data-id="${video.id}" aria-label="${t("watchLesson")}: ${escapeHtml(text(video.title))}"><span class="play-icon" aria-hidden="true">${complete ? "✓" : "▶"}</span><span class="video-duration">${video.duration}</span></button><div class="video-info"><div class="card-topline"><span class="badge">${folderText(video.folder)}</span>${complete ? `<span class="badge">${t("completedStat")}</span>` : ""}</div><h3>${text(video.title)}</h3><p>${text(video.description)}</p><div class="video-progress-track"><span style="width:${progress}%"></span></div><small class="text-muted text-small">${t("lessonProgress")}: ${progress}%</small><div class="article-actions"><button class="btn btn-secondary" data-action="open-video" data-id="${video.id}">${t("watchLesson")}</button><button class="small-action" data-action="toggle-video" data-id="${video.id}">${complete ? t("markedComplete") : t("markComplete")}</button></div></div></article>`;
+    }).join("") : `<div class="empty-state card" style="grid-column:1/-1">${t("noVideoResults")}</div>`}</div>`;
 }
 
 function renderProfile() {
@@ -2048,21 +2609,137 @@ function closeResults() {
 function openArticle(id) {
   const article = articles.find((item) => item.id === id);
   if (!article) return;
-  $("#modal-content").innerHTML = `<p class="eyebrow">${t("articleDetail")} · ${t("demoContent")}</p><h2 id="modal-title">${text(article.title)}</h2><p class="text-muted text-small">${t("minRead", { count: article.minutes })}</p><p style="font-size:13px;line-height:1.95">${text(article.body)}</p><div class="note-box">${t("articlesIntro")}</div><div class="welcome-actions"><button class="btn btn-primary" data-action="close-modal">${t("close")}</button></div>`;
+  renderArticleReader(article);
+  $("#modal-card").classList.add("reader-modal");
   $("#modal-backdrop").hidden = false;
   $("#modal-close").focus();
+}
+
+function renderArticleReader(article, scrollTo) {
+  const settings = sanitizeReaderSettings(state.readerSettings);
+  const highlights = state.articleHighlights[article.id] || [];
+  const saved = state.savedArticles.includes(article.id);
+  let body = escapeHtml(text(article.body));
+  for (const highlight of highlights) {
+    const needle = escapeHtml(highlight.text);
+    const index = body.indexOf(needle);
+    if (needle && index >= 0) {
+      body = `${body.slice(0, index)}<mark class="reader-highlight ${highlight.color}">${body.slice(index, index + needle.length)}</mark>${body.slice(index + needle.length)}`;
+    }
+  }
+  const category = article.category === "cardio" ? t("categoryCardio") : article.category === "skills" ? t("categorySkills") : t("categoryFoundations");
+  const savedNote = state.articleNotes[article.id] || "";
+  const highlightColors = ["yellow", "green", "blue", "pink", "purple", "orange"];
+  const colorName = (color) => t(`highlight${color[0].toUpperCase()}${color.slice(1)}`);
+  $("#modal-content").innerHTML = `<div class="article-reader" style="--reader-font-size:${13 * settings.fontSize * settings.zoom / 10000}px;--reader-line-height:${settings.spacing === "compact" ? 1.6 : settings.spacing === "relaxed" ? 2.2 : 1.9}">
+    <div class="article-reader-toolbar">
+      <span class="eyebrow">${category} · ${t("minRead", { count: article.minutes })} · ${t("demoContent")}</span>
+      <div class="reader-toolbar-actions">
+        <button class="small-action" data-action="toggle-bookmark" data-id="${article.id}">${saved ? `♥ ${t("bookmarked")}` : `♡ ${t("bookmark")}`}</button>
+        <button class="small-action" data-action="reader-highlight-mode" aria-pressed="${settings.highlightMode}">${settings.highlightMode ? t("highlightMode") + " ✓" : t("highlightMode")}</button>
+        <button class="small-action" data-action="highlight-selection">${t("highlightSelection")}</button>
+        <button class="small-action" data-action="share-article" data-id="${article.id}">${t("shareArticle")}</button>
+        <button class="small-action" data-action="copy-article-link" data-id="${article.id}">${t("copyArticleLink")}</button>
+        <button class="small-action" data-action="reader-note-focus">${t("articleNote")}</button>
+        <button class="small-action" data-action="export-article-pdf">${t("exportArticlePdf")}</button>
+        <button class="small-action" data-action="reader-report">${t("reportIssue")}</button>
+      </div>
+      <div class="highlight-palette" role="group" aria-label="${t("highlightSelection")}">${highlightColors.map((color) => `<button class="highlight-color ${color}${settings.highlightColor === color ? " active" : ""}" data-action="set-highlight-color" data-color="${color}" aria-label="${colorName(color)}" aria-pressed="${settings.highlightColor === color}"></button>`).join("")}<button class="small-action" data-action="erase-highlights">${t("eraseHighlights")}</button></div>
+    </div>
+    <details class="reader-display-panel"><summary>${t("readingDisplay")}</summary><div class="reader-display-controls">
+      <div class="reader-control-group"><strong>${t("fontSize")}</strong><button class="small-action" data-action="reader-font-down" aria-label="${t("decrease")}">−</button><span>${settings.fontSize}%</span><button class="small-action" data-action="reader-font-up" aria-label="${t("increase")}">+</button></div>
+      <div class="reader-control-group"><strong>${t("textZoom")}</strong><button class="small-action" data-action="reader-zoom-down" aria-label="${t("decrease")}">−</button><span>${settings.zoom}%</span><button class="small-action" data-action="reader-zoom-up" aria-label="${t("increase")}">+</button><button class="small-action" data-action="reader-reset">${t("resetDisplay")}</button></div>
+      <label>${t("typeface")}<select id="reader-typeface" class="control">${settingOption("sans", t("sansTypeface"), settings.typeface)}${settingOption("serif", t("serifTypeface"), settings.typeface)}</select></label>
+      <label>${t("lineSpacing")}<select id="reader-spacing" class="control">${settingOption("compact", t("compactSpacing"), settings.spacing)}${settingOption("cozy", t("cozySpacing"), settings.spacing)}${settingOption("relaxed", t("relaxedSpacing"), settings.spacing)}</select></label>
+      <label>${t("readingWidth")}<select id="reader-width" class="control">${settingOption("normal", t("normalWidth"), settings.width)}${settingOption("wide", t("wideWidth"), settings.width)}</select></label>
+    </div></details>
+    <div class="article-reader-layout">
+      <aside class="article-reader-toc"><strong>${t("articleToc")}</strong><button data-action="reader-scroll" data-id="reader-overview">${t("overviewSection")}</button><button data-action="reader-scroll" data-id="reader-reflection">${t("reflectionSection")}</button><button data-action="reader-scroll" data-id="reader-note">${t("articleNote")}</button></aside>
+      <article class="article-reader-content ${settings.typeface} ${settings.width}" dir="${state.contentLanguage === "both" ? "auto" : contentLang() === "ar" ? "rtl" : "ltr"}">
+        <h2 id="modal-title">${escapeHtml(text(article.title))}</h2><p class="text-muted text-small">${category} · ${t("minRead", { count: article.minutes })}</p>
+        <section id="reader-overview"><h3>${t("overviewSection")}</h3><div class="article-reader-copy ${settings.spacing}" style="font-size:var(--reader-font-size);line-height:var(--reader-line-height)">${body}</div><div class="note-box">${t("articlesIntro")}</div></section>
+        <section id="reader-reflection"><h3>${t("reflectionSection")}</h3><p class="article-reader-copy ${settings.spacing}">${t("articleReflection")}</p></section>
+        <section id="reader-highlights"><h3>${t("highlightsTitle")}</h3><div class="reader-highlight-list">${highlights.map((highlight, index) => `<div class="reader-saved-highlight"><mark class="reader-highlight ${highlight.color}">${escapeHtml(highlight.text)}</mark><button class="small-action" data-action="remove-highlight" data-id="${article.id}" data-index="${index}">${t("removeHighlight")}</button></div>`).join("") || `<p class="text-muted text-small">${t("noArticles")}</p>`}</div></section>
+        <section id="reader-note"><h3>${t("articleNote")}</h3><textarea id="article-reader-note" class="control" rows="4" maxlength="5000" placeholder="${t("articleNoteHint")}">${escapeHtml(savedNote)}</textarea><button class="btn btn-primary" data-action="save-article-note" data-id="${article.id}">${t("saveNote")}</button></section>
+      </article>
+    </div>
+  </div>`;
+  if (scrollTo) requestAnimationFrame(() => $(`#${scrollTo}`, $("#modal-content"))?.scrollIntoView({ behavior: "smooth", block: "start" }));
+}
+
+function articlePermalink(id) {
+  const url = new URL(location.href);
+  url.searchParams.set("article", id);
+  url.hash = "library";
+  return url.toString();
+}
+
+function updateArticleReader(articleId, settings = state.readerSettings) {
+  const article = articles.find((item) => item.id === articleId);
+  if (!article) return;
+  state.readerSettings = sanitizeReaderSettings(settings);
+  persist();
+  renderArticleReader(article);
+}
+
+function getActiveReaderArticle() {
+  const id = $("#modal-content .article-reader [data-action='save-article-note']")?.dataset.id;
+  return articles.find((article) => article.id === id);
+}
+
+async function copyText(value) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+  const field = document.createElement("textarea");
+  field.value = value;
+  field.style.position = "fixed";
+  field.style.opacity = "0";
+  document.body.append(field);
+  field.select();
+  const copied = document.execCommand("copy");
+  field.remove();
+  if (!copied) throw new Error("Clipboard permission is unavailable.");
 }
 
 function openVideo(id) {
   const video = videos.find((item) => item.id === id);
   if (!video) return;
-  $("#modal-content").innerHTML = `<p class="eyebrow">${t("demoContent")} · ${escapeHtml(video.duration)}</p><h2 id="modal-title">${escapeHtml(text(video.title))}</h2><p class="text-muted text-small">${escapeHtml(text(video.description))}</p><div class="lesson-transcript content-copy">${escapeHtml(text(video.lesson))}</div><div class="note-box">${t("videoDisclaimer")}</div><div class="welcome-actions"><button class="btn btn-primary" data-action="toggle-video" data-id="${video.id}">${state.completedVideos.includes(video.id) ? t("markedComplete") : t("markComplete")}</button>${state.preferences.osceVoice ? `<button class="btn btn-secondary" data-action="speak-video" data-id="${video.id}">${t("readCase")}</button>` : ""}</div>`;
+  state.videoProgress[video.id] = Math.max(10, Number(state.videoProgress[video.id]) || 0);
+  persist();
+  renderVideoPlayer(video);
+  $("#modal-card").classList.remove("reader-modal");
   $("#modal-backdrop").hidden = false;
   $("#modal-close").focus();
   if (state.preferences.keepAwake) requestWakeLock();
 }
 
-function speakText(value) {
+function getVideoPlaylist(video) {
+  const playlist = videos.filter((item) => item.specialty === video.specialty &&
+    (videoFilters.folder === "all" || item.folder === videoFilters.folder) &&
+    (!videoFilters.query.trim() || `${text(item.title)} ${text(item.description)}`.toLocaleLowerCase().includes(videoFilters.query.trim().toLocaleLowerCase()))
+  );
+  return videoFilters.sort === "title"
+    ? playlist.sort((a, b) => text(a.title).localeCompare(text(b.title), lang()))
+    : videoFilters.sort === "duration" ? playlist.sort((a, b) => a.duration.localeCompare(b.duration)) : playlist;
+}
+
+function renderVideoPlayer(video) {
+  const playlist = getVideoPlaylist(video);
+  const currentIndex = playlist.findIndex((item) => item.id === video.id);
+  const progress = Math.max(0, Math.min(100, Number(state.videoProgress[video.id]) || 0));
+  const complete = state.completedVideos.includes(video.id);
+  const previous = currentIndex > 0 ? playlist[currentIndex - 1] : null;
+  const next = currentIndex >= 0 && currentIndex < playlist.length - 1 ? playlist[currentIndex + 1] : null;
+  $("#modal-content").innerHTML = `<p class="eyebrow">${t("demoContent")} · ${escapeHtml(video.duration)} · ${escapeHtml(folderText(video.folder))}</p><h2 id="modal-title">${escapeHtml(text(video.title))}</h2><p class="text-muted text-small">${escapeHtml(text(video.description))}</p><div class="note-box">${t("textLessonOnly")} ${t("videoDisclaimer")}</div><div class="lesson-transcript content-copy">${escapeHtml(text(video.lesson))}</div>
+    <div class="lesson-progress-control"><label for="lesson-progress">${t("lessonProgress")} · ${progress}%</label><input id="lesson-progress" class="control" type="range" min="0" max="100" step="10" value="${progress}"></div>
+    <div class="video-player-options"><label class="setting-line toggle-line"><span>${t("autoplayNext")}</span><input id="video-autoplay" type="checkbox"${videoPlayer.autoplay ? " checked" : ""}></label><div class="field"><label for="video-speed">${t("playbackSpeed")}</label><select id="video-speed" class="control">${[0.75, 1, 1.25, 1.5].map((speed) => `<option value="${speed}"${videoPlayer.speed === speed ? " selected" : ""}>${speed}×</option>`).join("")}</select></div></div>
+    <div class="video-player-controls"><button class="btn btn-secondary" data-action="player-previous" ${previous ? "" : "disabled"}>${t("playerPrevious")}</button><button class="btn ${complete ? "btn-secondary" : "btn-primary"}" data-action="toggle-video" data-id="${video.id}">${complete ? t("markedComplete") : t("markComplete")}</button><button class="btn btn-secondary" data-action="player-next" ${next ? "" : "disabled"}>${t("playerNext")}</button>${state.preferences.osceVoice ? `<button class="btn btn-secondary" data-action="speak-video" data-id="${video.id}">${t("readCase")}</button>` : ""}</div>
+    <h3 class="playlist-heading">${t("upNext")}</h3><div class="video-playlist">${playlist.map((item) => `<button class="video-playlist-item${item.id === video.id ? " active" : ""}" data-action="open-video" data-id="${item.id}"><span>${escapeHtml(text(item.title))}</span><small>${item.duration}${state.completedVideos.includes(item.id) ? ` · ${t("markedComplete")}` : ""}</small></button>`).join("")}</div>`;
+}
+
+function speakText(value, rate = state.preferences.voiceRate) {
   if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
     showToast(t("noVoiceSupport"));
     return;
@@ -2070,7 +2747,7 @@ function speakText(value) {
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(value);
   utterance.lang = contentLang() === "ar" ? "ar" : "en";
-  utterance.rate = Math.max(0.75, Math.min(1.5, Number(state.preferences.voiceRate) || 1));
+  utterance.rate = Math.max(0.75, Math.min(1.5, Number(rate) || 1));
   window.speechSynthesis.speak(utterance);
 }
 
@@ -2088,13 +2765,22 @@ function makeId() {
   return globalThis.crypto?.randomUUID?.() || `demo-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 }
 
+function closeModal() {
+  $("#modal-backdrop").hidden = true;
+  $("#modal-card").classList.remove("reader-modal");
+  window.speechSynthesis?.cancel();
+  wakeLock?.release().catch(() => {});
+}
+
 function openNoteEditor() {
+  $("#modal-card").classList.remove("reader-modal");
   $("#modal-content").innerHTML = `<p class="eyebrow">${t("studyNotes")}</p><h2 id="modal-title">${t("addNote")}</h2><div class="field"><label for="note-title">${t("noteTitle")}</label><input id="note-title" class="control" maxlength="100"></div><div class="field" style="margin-top:14px"><label for="note-body">${t("studyNotes")}</label><textarea id="note-body" class="control" rows="6" maxlength="5000" placeholder="${t("noteBody")}"></textarea></div><div class="note-box" style="margin-top:14px">${t("localOnly")}</div><div class="welcome-actions"><button class="btn btn-primary" data-action="save-note">${t("saveNote")}</button><button class="btn btn-secondary" data-action="close-modal">${t("cancel")}</button></div>`;
   $("#modal-backdrop").hidden = false;
   $("#note-title").focus();
 }
 
 function openReportForm() {
+  $("#modal-card").classList.remove("reader-modal");
   $("#modal-content").innerHTML = `<p class="eyebrow">${t("support")}</p><h2 id="modal-title">${t("reportIssue")}</h2><p class="page-subtitle">${t("reportLocalOnly")}</p><div class="settings-fields"><div class="field"><label for="report-category">${t("reportCategory")}</label><select id="report-category" class="control">${settingOption("bug", t("bugReport"), "")}${settingOption("idea", t("ideaReport"), "")}${settingOption("question", t("questionReport"), "")}</select></div><div class="field"><label for="report-subject">${t("reportSubject")}</label><input id="report-subject" class="control" maxlength="120"></div></div><div class="field" style="margin-top:12px"><label for="report-description">${t("reportDescription")}</label><textarea id="report-description" class="control" rows="5" maxlength="4000"></textarea></div><div class="note-box" style="margin-top:12px">${t("currentDevice")} · ${escapeHtml(currentRoute)} · ${escapeHtml(new Date().toLocaleString())}</div><div class="welcome-actions"><button class="btn btn-primary" data-action="save-report">${t("reportIssue")}</button><button class="btn btn-secondary" data-action="close-modal">${t("cancel")}</button></div>`;
   $("#modal-backdrop").hidden = false;
 }
@@ -2116,6 +2802,28 @@ function exportBackup() {
   link.remove();
   URL.revokeObjectURL(url);
   showToast(t("backupExported"));
+}
+
+function exportAnkiCards() {
+  const fields = (value) => text(value).replace(/[\t\r\n]+/g, " ").trim();
+  const rows = deckCatalog.flatMap((deck) => (decks[deck.id] || []).map((card) => [
+    fields(card.front),
+    fields(card.back),
+    ["namaa-demo", deck.specialty, deck.id].join(" ")
+  ]));
+  const contents = ["#separator:tab", "#html:false", "Front\tBack\tTags", ...rows.map((row) => row.join("\t"))].join("\r\n");
+  const blob = new Blob([contents], { type: "text/tab-separated-values;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "namaa-flashcards.tsv";
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  $("#modal-card").classList.remove("reader-modal");
+  $("#modal-content").innerHTML = `<p class="eyebrow">${t("exportAnki")}</p><h2 id="modal-title">${t("ankiImportTitle")}</h2><div class="note-box">${t("ankiExportHelp")}</div><p class="content-copy">${t("ankiImportSteps")}</p><button class="btn btn-primary" data-action="close-modal">${t("close")}</button>`;
+  $("#modal-backdrop").hidden = false;
 }
 
 function mergeBackup(incoming) {
@@ -2154,8 +2862,31 @@ function mergeBackup(incoming) {
     dismissedQuestions: [...new Set([...(state.dismissedQuestions || []), ...(incoming.dismissedQuestions || [])])],
     savedArticles: [...new Set([...(state.savedArticles || []), ...(incoming.savedArticles || [])])],
     offlineArticles: [...new Set([...(state.offlineArticles || []), ...(incoming.offlineArticles || [])])],
+    articleNotes: { ...(olderState.articleNotes || {}), ...(latestState.articleNotes || {}) },
+    articleHighlights: Object.fromEntries(articles.map((article) => {
+      const items = [...(state.articleHighlights?.[article.id] || []), ...(incoming.articleHighlights?.[article.id] || [])];
+      return [article.id, items.filter((item, index) =>
+        items.findIndex((candidate) => candidate.text === item.text && candidate.color === item.color) === index
+      )];
+    }).filter(([, quotes]) => quotes.length)),
+    readerSettings: { ...state.readerSettings, ...latestState.readerSettings },
     offlinePacks: [...new Set([...(state.offlinePacks || []), ...(incoming.offlinePacks || [])])],
     completedVideos: [...new Set([...(state.completedVideos || []), ...(incoming.completedVideos || [])])],
+    videoProgress: Object.fromEntries(videos.map((video) => [video.id, Math.max(
+      Number(state.videoProgress?.[video.id]) || 0,
+      Number(incoming.videoProgress?.[video.id]) || 0,
+      state.completedVideos?.includes(video.id) || incoming.completedVideos?.includes(video.id) ? 100 : 0
+    )]).filter(([, progress]) => progress > 0)),
+    cardSchedule: { ...(state.cardSchedule || {}), ...(incoming.cardSchedule || {}) },
+    cardReviewLog: sanitizeCardReviewLog([...(state.cardReviewLog || []), ...(incoming.cardReviewLog || [])]
+      .filter((entry, index, list) => list.findIndex((item) => item.key === entry.key && item.rating === entry.rating && item.at === entry.at) === index)),
+    osceStationChecks: {
+      ...(state.osceStationChecks || {}),
+      ...Object.fromEntries(Object.keys(osceStations).map((station) => [station, [...new Set([
+        ...(state.osceStationChecks?.[station] || []),
+        ...(incoming.osceStationChecks?.[station] || [])
+      ])]]))
+    },
     achievements: [...new Set([...(state.achievements || []), ...(incoming.achievements || [])])]
   };
   persist();
@@ -2227,6 +2958,9 @@ function sanitizeBackupState(source) {
   })) : [];
   safe.savedArticles = Array.isArray(source.savedArticles) ? source.savedArticles.filter((id) => articles.some((item) => item.id === id)) : [];
   safe.offlineArticles = Array.isArray(source.offlineArticles) ? source.offlineArticles.filter((id) => articles.some((item) => item.id === id)) : [];
+  safe.articleNotes = sanitizeArticleMap(source.articleNotes, 5000);
+  safe.articleHighlights = sanitizeArticleHighlights(source.articleHighlights);
+  safe.readerSettings = sanitizeReaderSettings(source.readerSettings);
   safe.offlinePacks = Array.isArray(source.offlinePacks) ? source.offlinePacks.filter((id) =>
     ["foundations", "cardio", "clinical"].includes(id) ||
     offlinePackCatalog.some((pack) => pack.id === id) ||
@@ -2234,7 +2968,13 @@ function sanitizeBackupState(source) {
   ) : [];
   safe.completedVideos = Array.isArray(source.completedVideos) ? source.completedVideos.filter((id) => videos.some((item) => item.id === id)) : [];
   safe.cardRatings = Object.fromEntries(Object.keys(safe.cardRatings).map((key) => [key, Math.max(0, Math.min(10000, Number(source.cardRatings?.[key]) || 0))]));
+  safe.cardSchedule = sanitizeCardSchedule(source.cardSchedule);
+  safe.cardReviewLog = sanitizeCardReviewLog(source.cardReviewLog);
+  safe.videoProgress = sanitizeVideoProgress(source.videoProgress, safe.completedVideos);
+  safe.completedVideos.forEach((id) => { safe.videoProgress[id] = 100; });
   safe.osceChecks = Array.isArray(source.osceChecks) ? source.osceChecks.filter((index) => Number.isInteger(index) && index >= 0 && index < osceChecklist.length) : [];
+  safe.osceStation = ["interview", "sharedPlan", "structure"].includes(source.osceStation) ? source.osceStation : "interview";
+  safe.osceStationChecks = sanitizeOsceStationChecks(source.osceStationChecks);
   safe.achievements = Array.isArray(source.achievements) ? source.achievements.filter((id) => achievementCatalog.some(([key]) => key === id)) : [];
   safe.updatedAt = typeof source.updatedAt === "string" && Number.isFinite(Date.parse(source.updatedAt)) ? source.updatedAt : new Date(0).toISOString();
   return safe;
@@ -2281,7 +3021,10 @@ function clearData() {
   state.lang = language;
   qbankSettings = { mode: "tutor", source: "all", progress: "all", type: "all", difficulty: "all", count: "5", order: "mixed" };
   articleFilters = { query: "", category: "all", savedOnly: false };
-  flashcard = { deck: "core", index: 0, flipped: false };
+  flashcard = { deck: "core", index: 0, flipped: false, studying: false };
+  deckSearch = "";
+  videoFilters = { specialty: "all", folder: "all", status: "all", query: "", sort: "default" };
+  videoPlayer = { autoplay: false, speed: 1 };
   clearInterval(sessionTimer);
   sessionTimer = null;
   $("#modal-backdrop").hidden = true;
@@ -2290,7 +3033,7 @@ function clearData() {
   showToast(t("dataReset"));
 }
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-action]");
   if (!button) return;
   const action = button.dataset.action;
@@ -2310,6 +3053,27 @@ document.addEventListener("click", (event) => {
     render();
   } else if (action === "qbank-category") {
     qbankCategoryFilter = button.dataset.category;
+    render();
+  } else if (action === "select-video-specialty") {
+    videoFilters.specialty = button.dataset.id || "all";
+    videoFilters.folder = "all";
+    videoFilters.status = "all";
+    videoFilters.query = "";
+    render();
+  } else if (action === "select-video-folder") {
+    videoFilters.folder = button.dataset.id || "all";
+    render();
+  } else if (action === "set-video-status") {
+    videoFilters.status = button.dataset.id || "all";
+    render();
+  } else if (action === "start-flashcard-deck") {
+    startFlashcardStudy(button.dataset.id);
+  } else if (action === "start-flashcards-all") {
+    startFlashcardStudy("all");
+  } else if (action === "exit-flashcards") {
+    flashcard.studying = false;
+    flashcard.queue = [];
+    flashcard.flipped = false;
     render();
   } else if (action === "tracker-tab") {
     trackerTab = button.dataset.tab;
@@ -2397,7 +3161,10 @@ document.addEventListener("click", (event) => {
     const wasSaved = state.savedArticles.includes(id);
     state.savedArticles = toggleListValue(state.savedArticles, id);
     persist();
-    render();
+    if (!$("#modal-backdrop").hidden && $("#modal-content .article-reader")) {
+      const article = articles.find((item) => item.id === id);
+      if (article) renderArticleReader(article);
+    } else render();
     showToast(t(wasSaved ? "articleRemovedToast" : "articleSavedToast"));
   } else if (action === "toggle-offline") {
     state.offlineArticles = toggleListValue(state.offlineArticles, button.dataset.id);
@@ -2408,37 +3175,141 @@ document.addEventListener("click", (event) => {
   else if (action === "open-video") openVideo(button.dataset.id);
   else if (action === "speak-video") {
     const video = videos.find((item) => item.id === button.dataset.id);
-    if (video) speakText(text(video.lesson));
-  } else if (action === "read-case") speakText(lang() === "ar" ? "أشعر بضيق في النفس عندما أمشي بسرعة منذ بضعة أيام، وأود أن أفهم ما الذي يحدث." : "I've felt short of breath when walking quickly for a few days, and I'd like to understand what's going on.");
-  else if (action === "close-modal") {
-    $("#modal-backdrop").hidden = true;
-    window.speechSynthesis?.cancel();
-    wakeLock?.release().catch(() => {});
+    if (video) speakText(text(video.lesson), videoPlayer.speed);
+  } else if (action === "player-previous" || action === "player-next") {
+    const currentVideo = videos.find((item) => item.id === $("#modal-content [data-action='toggle-video']")?.dataset.id);
+    if (currentVideo) {
+      const playlist = getVideoPlaylist(currentVideo);
+      const currentIndex = playlist.findIndex((item) => item.id === currentVideo.id);
+      const targetIndex = currentIndex + (action === "player-previous" ? -1 : 1);
+      if (playlist[targetIndex]) openVideo(playlist[targetIndex].id);
+    }
+  } else if (action === "read-case") {
+    const station = osceStations[state.osceStation] || osceStations.interview;
+    speakText(text(station.patient));
+  } else if (["reader-font-down", "reader-font-up", "reader-zoom-down", "reader-zoom-up", "reader-reset", "reader-highlight-mode", "set-highlight-color"].includes(action)) {
+    const article = getActiveReaderArticle();
+    if (article) {
+      const settings = { ...state.readerSettings };
+      if (action === "reader-font-down") settings.fontSize -= 10;
+      if (action === "reader-font-up") settings.fontSize += 10;
+      if (action === "reader-zoom-down") settings.zoom -= 10;
+      if (action === "reader-zoom-up") settings.zoom += 10;
+      if (action === "reader-reset") {
+        settings.fontSize = 100;
+        settings.zoom = 100;
+      }
+      if (action === "reader-highlight-mode") settings.highlightMode = !settings.highlightMode;
+      if (action === "set-highlight-color") settings.highlightColor = button.dataset.color;
+      updateArticleReader(article.id, settings);
+    }
+  } else if (action === "highlight-selection") {
+    const article = getActiveReaderArticle();
+    const selection = window.getSelection();
+    const selectedText = selection?.toString().trim();
+    const readerCopy = $(".article-reader-copy", $("#modal-content"));
+    if (!state.readerSettings.highlightMode) showToast(t("enableHighlight"));
+    else if (!article || !selectedText || !selection?.anchorNode || !readerCopy?.contains(selection.anchorNode)) showToast(t("selectTextFirst"));
+    else {
+      const highlights = state.articleHighlights[article.id] || [];
+      state.articleHighlights[article.id] = [...highlights, { text: selectedText.slice(0, 1000), color: state.readerSettings.highlightColor }]
+        .filter((item, index, list) => list.findIndex((candidate) => candidate.text === item.text && candidate.color === item.color) === index)
+        .slice(0, 100);
+      persist();
+      renderArticleReader(article, "reader-highlights");
+      showToast(t("highlightSaved"));
+    }
+  } else if (action === "erase-highlights") {
+    const article = getActiveReaderArticle();
+    if (article) {
+      delete state.articleHighlights[article.id];
+      persist();
+      renderArticleReader(article, "reader-overview");
+    }
+  } else if (action === "remove-highlight") {
+    const article = articles.find((item) => item.id === button.dataset.id);
+    if (article) {
+      state.articleHighlights[article.id] = (state.articleHighlights[article.id] || []).filter((_, index) => index !== Number(button.dataset.index));
+      if (!state.articleHighlights[article.id].length) delete state.articleHighlights[article.id];
+      persist();
+      renderArticleReader(article, "reader-highlights");
+    }
+  } else if (action === "save-article-note") {
+    const article = articles.find((item) => item.id === button.dataset.id);
+    if (article) {
+      const note = $("#article-reader-note").value.slice(0, 5000);
+      if (note.trim()) state.articleNotes[article.id] = note;
+      else delete state.articleNotes[article.id];
+      persist();
+      renderArticleReader(article, "reader-note");
+      showToast(t("noteSaved"));
+    }
+  } else if (action === "reader-note-focus") {
+    $("#article-reader-note")?.focus();
+  } else if (action === "reader-scroll") {
+    $(`#${button.dataset.id}`, $("#modal-content"))?.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else if (action === "reader-report") {
+    openReportForm();
+  } else if (action === "copy-article-link" || action === "share-article") {
+    const article = articles.find((item) => item.id === button.dataset.id);
+    if (article) {
+      const url = articlePermalink(article.id);
+      try {
+        if (action === "share-article" && navigator.share) await navigator.share({ title: text(article.title), url });
+        else {
+          await copyText(url);
+          showToast(t("linkCopied"));
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.warn("Article link could not be shared or copied.", error);
+          showToast(t("linkCopyFailed"));
+        }
+      }
+    }
+  } else if (action === "export-article-pdf") {
+    document.body.classList.add("print-article");
+    window.addEventListener("afterprint", () => document.body.classList.remove("print-article"), { once: true });
+    window.print();
+  } else if (action === "close-modal") {
+    closeModal();
   }
   else if (action === "flip-card") {
     flashcard.flipped = !flashcard.flipped;
     render();
-  } else if (action === "previous-card" || action === "next-card" || action === "rate-card") {
-    const list = decks[flashcard.deck];
-    if (action === "rate-card") {
-      state.cardRatings[flashcard.deck] += 1;
-      persist();
-      showToast(t("flashcardRated"));
-    }
+  } else if (action === "rate-card") {
+    rateCurrentCard(button.dataset.rating);
+  } else if (action === "restart-flashcards") {
+    startFlashcardStudy(flashcard.deck);
+  } else if (action === "previous-card" || action === "next-card") {
+    const list = getFlashcardQueue();
     const delta = action === "previous-card" ? -1 : 1;
-    flashcard.index = (flashcard.index + delta + list.length) % list.length;
+    flashcard.index = Math.max(0, Math.min(list.length - 1, flashcard.index + delta));
     flashcard.flipped = false;
     render();
   } else if (action === "reset-osce") {
-    state.osceChecks = [];
+    if (state.osceStation === "interview") state.osceChecks = [];
+    else state.osceStationChecks[state.osceStation] = [];
     osceStartedAt = null;
     persist();
     render();
   } else if (action === "toggle-video") {
-    state.completedVideos = toggleListValue(state.completedVideos, button.dataset.id);
+    const videoId = button.dataset.id;
+    const wasComplete = state.completedVideos.includes(videoId);
+    state.completedVideos = toggleListValue(state.completedVideos, videoId);
+    state.videoProgress[videoId] = wasComplete ? 0 : 100;
     persist();
     if ($("#modal-backdrop").hidden) render();
-    else openVideo(button.dataset.id);
+    else if (!wasComplete && videoPlayer.autoplay) {
+      const video = videos.find((item) => item.id === videoId);
+      const playlist = video ? getVideoPlaylist(video) : [];
+      const index = playlist.findIndex((item) => item.id === videoId);
+      if (playlist[index + 1]) openVideo(playlist[index + 1].id);
+      else if (video) renderVideoPlayer(video);
+    } else {
+      const video = videos.find((item) => item.id === videoId);
+      if (video) renderVideoPlayer(video);
+    }
   } else if (action === "save-profile" || action === "save-account-settings") {
     const name = $("#profile-name")?.value?.trim().slice(0, 36) || $("#setting-name")?.value?.trim().slice(0, 36) || "";
     const preset = $("#setting-goal-preset")?.value;
@@ -2549,6 +3420,7 @@ document.addEventListener("click", (event) => {
     render();
     showToast(t("reportSent"));
   } else if (action === "export-backup") exportBackup();
+  else if (action === "export-anki") exportAnkiCards();
   else if (action === "import-backup") importBackup();
   else if (action === "toggle-pack") {
     state.offlinePacks = toggleListValue(state.offlinePacks, button.dataset.id);
@@ -2567,6 +3439,12 @@ document.addEventListener("change", (event) => {
   if (target.matches("[data-setting]")) {
     qbankSettings[target.dataset.setting] = target.value;
     render();
+  } else if (["reader-typeface", "reader-spacing", "reader-width"].includes(target.id)) {
+    const article = getActiveReaderArticle();
+    if (article) {
+      const key = { "reader-typeface": "typeface", "reader-spacing": "spacing", "reader-width": "width" }[target.id];
+      updateArticleReader(article.id, { ...state.readerSettings, [key]: target.value });
+    }
   } else if (target.id === "setting-goal-preset") {
     const input = $("#setting-goal");
     input.style.display = target.value === "custom" ? "" : "none";
@@ -2574,10 +3452,27 @@ document.addEventListener("change", (event) => {
   } else if (target.id === "article-category") {
     articleFilters.category = target.value;
     render();
-  } else if (target.id === "deck-select") {
-    flashcard.deck = target.value;
-    flashcard.index = 0;
-    flashcard.flipped = false;
+  } else if (target.id === "video-sort") {
+    videoFilters.sort = target.value;
+    render();
+  } else if (target.id === "video-autoplay") {
+    videoPlayer.autoplay = target.checked;
+  } else if (target.id === "video-speed") {
+    videoPlayer.speed = Number(target.value);
+  } else if (target.id === "lesson-progress") {
+    const video = videos.find((item) => item.id === $("#modal-content [data-action='toggle-video']")?.dataset.id);
+    if (video) {
+      const progress = Math.max(0, Math.min(100, Number(target.value) || 0));
+      state.videoProgress[video.id] = progress;
+      state.completedVideos = progress >= 100
+        ? [...new Set([...state.completedVideos, video.id])]
+        : state.completedVideos.filter((id) => id !== video.id);
+      persist();
+      renderVideoPlayer(video);
+    }
+  } else if (target.id === "osce-station") {
+    state.osceStation = target.value;
+    osceStartedAt = null;
     render();
   } else if (target.id === "qbank-specialty") {
     qbankSpecialtyFilter = target.value;
@@ -2591,7 +3486,10 @@ document.addEventListener("change", (event) => {
   } else if (target.matches("[data-osce-item]")) {
     if (target.checked && !osceStartedAt) osceStartedAt = Date.now();
     const index = Number(target.dataset.osceItem);
-    state.osceChecks = target.checked ? [...new Set([...state.osceChecks, index])] : state.osceChecks.filter((item) => item !== index);
+    const current = state.osceStation === "interview" ? state.osceChecks : (state.osceStationChecks[state.osceStation] || []);
+    const updated = target.checked ? [...new Set([...current, index])] : current.filter((item) => item !== index);
+    if (state.osceStation === "interview") state.osceChecks = updated;
+    else state.osceStationChecks[state.osceStation] = updated;
     persist();
     render();
   } else if (["haptics-setting", "keep-awake-setting", "osce-voice", "live-transcript"].includes(target.id)) {
@@ -2621,6 +3519,20 @@ document.addEventListener("input", (event) => {
     const search = $("#article-search");
     search.focus();
     search.setSelectionRange(position, position);
+  } else if (event.target.id === "deck-search") {
+    const position = event.target.selectionStart;
+    deckSearch = event.target.value;
+    render();
+    const search = $("#deck-search");
+    search.focus();
+    search.setSelectionRange(position, position);
+  } else if (event.target.id === "video-search") {
+    const position = event.target.selectionStart;
+    videoFilters.query = event.target.value;
+    render();
+    const search = $("#video-search");
+    search.focus();
+    search.setSelectionRange(position, position);
   } else if (event.target.id === "written-answer") {
     typedAnswer = event.target.value;
   } else if (event.target.classList.contains("shortcut-input")) {
@@ -2631,12 +3543,10 @@ document.addEventListener("input", (event) => {
 
 $("#language-toggle").addEventListener("click", toggleLanguage);
 $("#profile-shortcut").addEventListener("click", () => navigate("profile"));
-$("#modal-close").addEventListener("click", () => { $("#modal-backdrop").hidden = true; });
+$("#modal-close").addEventListener("click", closeModal);
 $("#modal-backdrop").addEventListener("click", (event) => {
   if (event.target === $("#modal-backdrop")) {
-    $("#modal-backdrop").hidden = true;
-    window.speechSynthesis?.cancel();
-    wakeLock?.release().catch(() => {});
+    closeModal();
   }
 });
 window.addEventListener("hashchange", () => {
@@ -2644,9 +3554,35 @@ window.addEventListener("hashchange", () => {
   if (["dashboard", "qbank", "learn", "library", "flashcards", "osce", "videos", "profile", "progress", "notes", "settings"].includes(route)) navigate(route);
 });
 document.addEventListener("keydown", (event) => {
-  if ($("#modal-backdrop") && !$("#modal-backdrop").hidden) return;
+  if ($("#modal-backdrop") && !$("#modal-backdrop").hidden) {
+    if (event.key === "Escape") closeModal();
+    return;
+  }
   if (event.target.matches("input, textarea, select, [contenteditable='true']")) return;
   if (event.ctrlKey || event.metaKey || event.altKey) return;
+  if (currentRoute === "flashcards" && flashcard.studying) {
+    if (event.code === "Space") {
+      event.preventDefault();
+      flashcard.flipped = !flashcard.flipped;
+      render();
+      return;
+    }
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      const delta = event.key === "ArrowLeft" ? -1 : 1;
+      const cards = getFlashcardQueue();
+      flashcard.index = Math.max(0, Math.min(cards.length - 1, flashcard.index + delta));
+      flashcard.flipped = false;
+      render();
+      return;
+    }
+    const ratings = { "1": "again", "2": "hard", "3": "good", "4": "easy" };
+    if (ratings[event.key]) {
+      event.preventDefault();
+      rateCurrentCard(ratings[event.key]);
+      return;
+    }
+  }
   const key = event.key.toLowerCase();
   const keys = state.preferences.shortcuts || {};
   const routeFor = { dashboard: "dashboard", qbank: "qbank", library: "library" };
@@ -2675,6 +3611,8 @@ const initialRoute = location.hash.slice(1);
 if (["dashboard", "qbank", "learn", "library", "flashcards", "osce", "videos", "profile", "progress", "notes", "settings"].includes(initialRoute)) currentRoute = initialRoute;
 if (currentRoute === "qbank" && state.activeSession) startSessionTimer();
 render();
+const sharedArticleId = new URLSearchParams(location.search).get("article");
+if (currentRoute === "library" && sharedArticleId && articles.some((article) => article.id === sharedArticleId)) openArticle(sharedArticleId);
 if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
   navigator.serviceWorker.register("./sw.js").catch((error) => console.warn("Offline app shell could not be enabled.", error));
 }
