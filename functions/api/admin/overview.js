@@ -16,7 +16,9 @@ export async function onRequestGet({ request, env }) {
   const [users, progress, saved, audits] = await Promise.all([
     db.prepare("SELECT status, COUNT(*) AS total FROM users GROUP BY status").all(),
     db.prepare("SELECT COUNT(*) AS total FROM study_progress").first(),
-    db.prepare("SELECT COUNT(*) AS total FROM saved_items").first(),
+    db.prepare(
+      "SELECT COUNT(*) AS total FROM saved_items WHERE COALESCE(json_extract(metadata, '$.namaaSync.deleted'), 0) != 1"
+    ).first(),
     db.prepare(
       "SELECT action, created_at FROM audit_events ORDER BY created_at DESC LIMIT 10"
     ).all()

@@ -1,9 +1,36 @@
+import { ApiClientError, checkAccountService, mergeProgressPayloads, requestApi, serializedSize } from "./account-sync.js";
+
 const translations = {
   ar: {
     brandTagline: "مساحة التعلّم الطبي",
     demoMode: "نسخة تجريبية",
     footerNote: "محتوى توضيحي أصلي — ليس بديلاً عن الإرشاد الطبي.",
-    localOnly: "تُحفظ بيانات التجربة على هذا الجهاز",
+    localOnly: "بيانات الدراسة محلية؛ الحساب والمزامنة يتطلبان استضافة Cloudflare Pages.",
+    accountChecking: "جارٍ فحص خدمة الحساب",
+    accountApiUnavailable: "الحسابات تتطلب Cloudflare Pages",
+    accountServiceReady: "خدمة الحساب جاهزة",
+    accountSignedIn: "تم تسجيل الدخول",
+    accountSyncing: "جارٍ مزامنة التقدم",
+    accountSynced: "تمت مزامنة التقدم",
+    accountSyncPending: "تم تسجيل الدخول؛ لم تكتمل المزامنة بعد.",
+    accountSyncFailed: "تعذرت المزامنة",
+    accountUnavailableTitle: "الحساب غير متاح على هذا المضيف",
+    accountUnavailable: "تعمل الدراسة محلياً هنا. يتطلب تسجيل الدخول والمزامنة API على Cloudflare Pages.",
+    accountReadyTitle: "حساب نماء",
+    accountReady: "سجّل الدخول بحساب Google لمزامنة تقدم الدراسة والعناصر المحفوظة.",
+    signInGoogle: "المتابعة باستخدام Google",
+    signedInAs: "تم تسجيل الدخول باسم {email}",
+    studentRole: "طالب",
+    adminRole: "مسؤول",
+    adminPanel: "لوحة الإدارة",
+    signOut: "تسجيل الخروج",
+    syncSuccess: "اكتملت مزامنة تقدمك والعناصر المحفوظة.",
+    syncError: "تعذرت مزامنة بعض البيانات: {message}",
+    syncTooLarge: "أحد سجلات التقدم أكبر من الحد الآمن للمزامنة؛ بقيت بياناتك المحلية كما هي.",
+    syncCloudAvailable: "حساب Google متاح لهذا المضيف. تتم مزامنة تقدم الدراسة والعناصر المحفوظة بعد تسجيل الدخول.",
+    authLogoutError: "تعذر تسجيل الخروج من الحساب. حاول مرة أخرى.",
+    authLoginError: "تعذر إكمال تسجيل الدخول باستخدام Google. حاول مرة أخرى.",
+    accountCloudAndLocal: "تمت مزامنة التقدم المحفوظ؛ تبقى الملاحظات والإعدادات محلية.",
     navDashboard: "الرئيسية",
     navQbank: "بنك الأسئلة",
     navLearn: "تعلّم",
@@ -341,8 +368,8 @@ const translations = {
     noNotes: "ملاحظاتك الشخصية تظهر هنا، وتُحفظ محلياً على هذا الجهاز.",
     noteSaved: "تم حفظ الملاحظة على هذا الجهاز.",
     noteDeleted: "تم حذف الملاحظة.",
-    accountDetails: "تفاصيل الحساب المحلي",
-    accountExplanation: "هذا ملف تجريبي على هذا الجهاز فقط. لا يوجد تسجيل دخول أو حساب سحابي.",
+    accountDetails: "ملف الدراسة المحلي",
+    accountExplanation: "هذه التفضيلات محفوظة على هذا الجهاز؛ لا تُرسل إلى حساب نماء.",
     profileName: "اسم العرض",
     profileNameHint: "يظهر هذا الاسم في لوحة التعلّم.",
     interfaceLanguage: "لغة الواجهة",
@@ -390,8 +417,8 @@ const translations = {
     clearDownloads: "مسح المحفوظات المحلية",
     downloadsCleared: "تم مسح قائمة المحفوظات المحلية.",
     syncStatus: "حالة المزامنة",
-    syncLocalOnly: "محلي فقط — لا يوجد خادم مزامنة مضبوط.",
-    syncSecurity: "لا تضع مفاتيح أو أسرار في التطبيق. مزامنة الأجهزة تحتاج خدمة خلفية آمنة.",
+    syncLocalOnly: "تعمل بيانات الدراسة محلياً حتى يتوفر API الحسابات على Cloudflare Pages.",
+    syncSecurity: "تتم المزامنة عبر جلسة آمنة على نفس المضيف. تبقى الملاحظات والإعدادات والنسخ الاحتياطية محلية.",
     exportBackup: "تصدير نسخة احتياطية",
     importBackup: "استيراد نسخة احتياطية",
     backupExported: "تم تنزيل النسخة الاحتياطية.",
@@ -515,7 +542,32 @@ const translations = {
     brandTagline: "Medical study space",
     demoMode: "DEMO",
     footerNote: "Original demo material — not a substitute for medical guidance.",
-    localOnly: "Demo data stays on this device",
+    localOnly: "Study data is local; accounts and sync require Cloudflare Pages hosting.",
+    accountChecking: "Checking account service",
+    accountApiUnavailable: "Accounts require Cloudflare Pages",
+    accountServiceReady: "Account service ready",
+    accountSignedIn: "Signed in",
+    accountSyncing: "Syncing progress",
+    accountSynced: "Progress synced",
+    accountSyncPending: "Signed in; sync has not completed yet.",
+    accountSyncFailed: "Sync failed",
+    accountUnavailableTitle: "Accounts are unavailable on this host",
+    accountUnavailable: "Study works locally here. Sign-in and sync require the API running on Cloudflare Pages.",
+    accountReadyTitle: "Namaa account",
+    accountReady: "Sign in with Google to sync study progress and saved items.",
+    signInGoogle: "Continue with Google",
+    signedInAs: "Signed in as {email}",
+    studentRole: "Student",
+    adminRole: "Administrator",
+    adminPanel: "Admin panel",
+    signOut: "Sign out",
+    syncSuccess: "Your progress and saved items are synced.",
+    syncError: "Some data could not be synced: {message}",
+    syncTooLarge: "A progress record exceeds the safe sync limit; your local data remains unchanged.",
+    syncCloudAvailable: "Google accounts are available on this host. Study progress and saved items sync after sign-in.",
+    authLogoutError: "Could not sign out of the account. Please try again.",
+    authLoginError: "Google sign-in could not be completed. Please try again.",
+    accountCloudAndLocal: "Saved progress is synced; notes and settings remain local.",
     navDashboard: "Dashboard",
     navQbank: "Question Studio",
     navLearn: "Learn",
@@ -853,8 +905,8 @@ const translations = {
     noNotes: "Your personal notes appear here and are saved locally on this device.",
     noteSaved: "Note saved on this device.",
     noteDeleted: "Note deleted.",
-    accountDetails: "Local account details",
-    accountExplanation: "This is a demo profile on this device only. There is no sign-in or cloud account.",
+    accountDetails: "Local study profile",
+    accountExplanation: "These preferences stay on this device; they are not sent to your Namaa account.",
     profileName: "Display name",
     profileNameHint: "This name appears in your learning dashboard.",
     interfaceLanguage: "Interface language",
@@ -902,8 +954,8 @@ const translations = {
     clearDownloads: "Clear local saved items",
     downloadsCleared: "Local saved items were cleared.",
     syncStatus: "Sync status",
-    syncLocalOnly: "Local only — no sync server is configured.",
-    syncSecurity: "Do not put keys or secrets in the app. Device sync requires a secure backend.",
+    syncLocalOnly: "Study data stays local until the account API is available on Cloudflare Pages.",
+    syncSecurity: "Sync uses a secure same-origin session. Notes, settings, and backups remain on this device.",
     exportBackup: "Export backup",
     importBackup: "Import backup",
     backupExported: "Backup downloaded.",
@@ -1497,6 +1549,8 @@ const defaultState = () => ({
   osceChecks: [],
   osceStation: "interview",
   osceStationChecks: {},
+  syncSetChanges: {},
+  bookmarkChanges: {},
   achievements: [],
   updatedAt: new Date(0).toISOString(),
   activeSession: null
@@ -1538,6 +1592,14 @@ function loadState() {
       osceChecks: Array.isArray(saved.osceChecks) ? saved.osceChecks : [],
       osceStation: ["interview", "sharedPlan", "structure"].includes(saved.osceStation) ? saved.osceStation : "interview",
       osceStationChecks: sanitizeOsceStationChecks(saved.osceStationChecks),
+      syncSetChanges: sanitizeSyncSetChanges(saved.syncSetChanges),
+      bookmarkChanges: saved.bookmarkChanges && typeof saved.bookmarkChanges === "object" && !Array.isArray(saved.bookmarkChanges)
+        ? Object.fromEntries(Object.entries(saved.bookmarkChanges).filter(([id, change]) =>
+          articles.some((article) => article.id === id) &&
+          change && typeof change.deleted === "boolean" &&
+          typeof change.changedAt === "string" && Number.isFinite(Date.parse(change.changedAt))
+        ))
+        : {},
       achievements: Array.isArray(saved.achievements) ? saved.achievements : []
     };
   } catch (error) {
@@ -1546,7 +1608,37 @@ function loadState() {
   }
 }
 
+function sanitizeSyncSetChanges(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  const result = {};
+  for (const [category, entries] of Object.entries(value)) {
+    if (!["dismissed", "videos", "osce-interview", "osce-sharedPlan", "osce-structure"].includes(category)) continue;
+    if (!entries || typeof entries !== "object" || Array.isArray(entries)) continue;
+    const validId = (id) => category === "dismissed"
+      ? questions.some((question) => question.id === id)
+      : category === "videos"
+        ? videos.some((video) => video.id === id)
+        : /^\d{1,3}$/.test(id);
+    result[category] = Object.fromEntries(Object.entries(entries).filter(([id, change]) =>
+      validId(id) && change && typeof change.present === "boolean" &&
+      typeof change.changedAt === "string" && Number.isFinite(Date.parse(change.changedAt))
+    ).map(([id, change]) => [id, { present: change.present, changedAt: change.changedAt }]));
+  }
+  return result;
+}
+
 let state = loadState();
+let accountState = {
+  status: "checking",
+  apiAvailable: false,
+  user: null,
+  csrfToken: null,
+  syncStatus: "local",
+  error: null,
+  initialized: false
+};
+let syncTimer = null;
+let syncInProgress = false;
 let currentRoute = "dashboard";
 let studioTab = "content";
 let trackerTab = "overview";
@@ -1603,6 +1695,7 @@ function persist() {
     state.updatedAt = new Date().toISOString();
     state.achievements = getAchievements().filter((achievement) => achievement.unlocked).map((achievement) => achievement.id);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    scheduleAccountSync();
     return true;
   } catch (error) {
     console.warn("Could not save local demo data.", error);
@@ -1622,6 +1715,24 @@ function applyLanguage() {
   $("#language-toggle").textContent = lang() === "ar" ? "EN" : "ع";
   $("#language-toggle").setAttribute("aria-label", lang() === "ar" ? "Switch language" : "تغيير اللغة");
   $("#profile-shortcut").textContent = (state.name || t("welcomeName")).trim().slice(0, 1) || (lang() === "ar" ? "س" : "S");
+  const accountStatus = $("#account-status-text");
+  if (accountStatus) {
+    const statusKey = accountState.status === "checking" ? "accountChecking"
+      : !accountState.apiAvailable ? "accountApiUnavailable"
+        : accountState.user ? ({
+          syncing: "accountSyncing",
+          synced: "accountSynced",
+          failed: "accountSyncFailed"
+        }[accountState.syncStatus] || "accountSignedIn")
+          : "accountServiceReady";
+    accountStatus.textContent = t(statusKey);
+  }
+  const storageStatus = $("#storage-status");
+  if (storageStatus) {
+    storageStatus.textContent = accountState.user && accountState.syncStatus === "synced"
+      ? t("accountCloudAndLocal")
+      : t("localOnly");
+  }
   $("#main-nav").setAttribute("aria-label", lang() === "ar" ? "التنقل الرئيسي" : "Main navigation");
   document.documentElement.dataset.theme = state.theme;
   document.documentElement.dataset.accent = state.accent;
@@ -2273,16 +2384,32 @@ function renderVideos() {
     }).join("") : `<div class="empty-state card" style="grid-column:1/-1">${t("noVideoResults")}</div>`}</div>`;
 }
 
+function renderAccountPanel() {
+    if (accountState.status === "checking") {
+      return `<div class="account-panel"><p class="page-subtitle">${t("accountChecking")}</p></div>`;
+    }
+    if (!accountState.apiAvailable) {
+      return `<div class="account-panel"><div><h3>${t("accountUnavailableTitle")}</h3><p class="page-subtitle">${t("accountUnavailable")}</p></div></div>`;
+    }
+    if (!accountState.user) {
+      return `<div class="account-panel"><div><h3>${t("accountReadyTitle")}</h3><p class="page-subtitle">${t("accountReady")}</p></div><a class="btn btn-primary" href="/api/auth/google/start">${t("signInGoogle")}</a></div>`;
+    }
+    const user = accountState.user;
+    const role = user.role === "admin" ? t("adminRole") : t("studentRole");
+    return `<div class="account-panel"><div><h3>${escapeHtml(user.displayName || user.email)}</h3><p class="page-subtitle">${t("signedInAs", { email: escapeHtml(user.email) })} · ${role}</p></div><div class="account-actions">${user.role === "admin" ? `<a class="btn btn-secondary" href="/admin.html">${t("adminPanel")}</a>` : ""}<button class="btn btn-secondary" data-action="account-logout">${t("signOut")}</button></div></div><div class="account-panel account-sync-panel"><div><strong>${t("syncStatus")}</strong><p class="page-subtitle">${accountState.syncStatus === "failed" ? escapeHtml(accountState.error || t("accountSyncFailed")) : t(accountState.syncStatus === "synced" ? "accountSynced" : accountState.syncStatus === "syncing" ? "accountSyncing" : "accountSyncPending")}</p></div><button class="btn btn-primary" data-action="sync-now"${accountState.syncStatus === "syncing" ? " disabled" : ""}>${t("syncNow")}</button></div>`;
+}
+
 function renderProfile() {
-  const summary = getSummary();
-  const achievements = getAchievements();
-  return `<div class="page-heading"><div><p class="eyebrow">${t("profileEyebrow")}</p><h1>${t("profileTitle")}</h1><p class="page-subtitle">${t("profileIntro")}</p></div></div>
+    const summary = getSummary();
+    const achievements = getAchievements();
+    return `<div class="page-heading"><div><p class="eyebrow">${t("profileEyebrow")}</p><h1>${t("profileTitle")}</h1><p class="page-subtitle">${t("profileIntro")}</p></div></div>
     <div class="profile-layout">
       <aside class="profile-sidebar card"><div class="profile-person"><span class="profile-avatar">${escapeHtml((state.name || t("welcomeName")).slice(0, 1))}</span><strong>${escapeHtml(state.name || t("welcomeName"))}</strong><small class="text-muted">${t("accountDemo")}</small></div>${profileSubnav("profile")}</aside>
       <div class="profile-main">
         <section class="stats-row profile-stats">
           ${statCard("statQuestions", summary.answered, "↗")}${statCard("trackerCorrect", state.history.reduce((sum, item) => sum + item.correct, 0), "✓")}${statCard("trackerWrong", Math.max(0, summary.answered - state.history.reduce((sum, item) => sum + item.correct, 0)), "↻")}${statCard("statAccuracy", `${summary.accuracy}%`, "◎")}
         </section>
+        <section class="settings-card card"><div class="section-heading" style="margin-top:0"><div><h2>${t("account")}</h2><p class="page-subtitle">${t("syncSecurity")}</p></div></div>${renderAccountPanel()}</section>
         <section class="settings-card card"><div class="section-heading" style="margin-top:0"><div><h2>${t("accountDetails")}</h2><p class="page-subtitle">${t("accountExplanation")}</p></div></div>
           <div class="settings-fields"><div class="field"><label for="profile-name">${t("displayName")}</label><input class="control" id="profile-name" maxlength="36" value="${escapeHtml(state.name)}" placeholder="${t("welcomeName")}"><span class="field-hint">${t("profileNameHint")}</span></div><div class="field"><label for="profile-goal">${t("dailyTarget")}</label><input class="control" id="profile-goal" type="number" min="1" max="100" value="${state.goal}"></div></div><button class="btn btn-primary" data-action="save-profile">${t("saveSettings")}</button>
         </section>
@@ -2467,8 +2594,318 @@ function renderDownloads() {
   return `<h2>${t("downloads")}</h2><div class="note-box">${shellReady ? t("offlineReady") : t("offlineNotReady")} · ${navigator.onLine ? "Online" : "Offline"} · ${t("cachePending")}</div><div class="settings-fields"><div class="insight-card"><small>${t("storageUsed")}</small><strong>${storageEstimate < 1024 ? `${storageEstimate} B` : `${(storageEstimate / 1024).toFixed(1)} KB`}</strong></div><div class="insight-card"><small>${t("savedArticlesCount")}</small><strong>${state.offlineArticles.length}</strong></div><div class="insight-card"><small>${t("downloadPack")}</small><strong>${state.offlinePacks.length}</strong></div></div><div class="filter-row"><label for="pack-type-filter">${t("filterPackType")}</label><select class="control" id="pack-type-filter" style="width:auto">${settingOption("all", t("allPackTypes"), downloadTypeFilter)}${settingOption("quiz", t("quizPack"), downloadTypeFilter)}${settingOption("qbank", t("qbankPack"), downloadTypeFilter)}${settingOption("written", t("writtenPack"), downloadTypeFilter)}${settingOption("flashcards", t("flashcardPack"), downloadTypeFilter)}</select><button class="btn btn-primary" data-action="download-all">${t("downloadAll")}</button><button class="btn btn-secondary" data-action="clear-downloads">${t("removeAll")} (${cachedCount})</button></div><div class="download-list">${packCards}</div><h3 style="margin-top:22px">${t("savedArticlesCount")}</h3><div class="download-list">${offlineArticleList.map((article) => `<div class="download-pack"><strong>${escapeHtml(text(article.title))}</strong><button class="small-action" data-action="toggle-offline" data-id="${article.id}">${t("deleteNote")}</button></div>`).join("") || `<p class="text-muted text-small">${t("noArticles")}</p>`}</div>`;
 }
 
+const SYNC_EPOCH = new Date(0).toISOString();
+
+function setStatesFor(category, members) {
+  const saved = state.syncSetChanges[category] || {};
+  const result = { ...saved };
+  for (const member of members) {
+    const id = String(member);
+    if (!result[id]) result[id] = { present: true, changedAt: SYNC_EPOCH };
+  }
+  return result;
+}
+
+function applySetStates(category, value, isValid) {
+  const entries = value && typeof value === "object" && !Array.isArray(value) ? value : {};
+  const safe = Object.fromEntries(Object.entries(entries).filter(([id, change]) =>
+    isValid(id) && change && typeof change.present === "boolean" &&
+    typeof change.changedAt === "string" && Number.isFinite(Date.parse(change.changedAt))
+  ).map(([id, change]) => [id, { present: change.present, changedAt: change.changedAt }]));
+  state.syncSetChanges[category] = safe;
+  return Object.entries(safe).filter(([, change]) => change.present).map(([id]) => id);
+}
+
+function recordSetChange(category, id, present) {
+  state.syncSetChanges[category] = {
+    ...state.syncSetChanges[category],
+    [String(id)]: { present, changedAt: new Date().toISOString() }
+  };
+}
+
+function localProgressSnapshots() {
+  return [
+    {
+      itemKey: "namaa:history",
+      value: {
+        items: state.history.slice(-25).map((item) => ({
+          ...item,
+          questionIds: Array.isArray(item?.questionIds) ? item.questionIds.slice(0, 30) : []
+        }))
+      },
+      apply(value) {
+        const items = Array.isArray(value.items) ? value.items : [];
+        state.history = items.filter((item) =>
+          item && typeof item.id === "string" && item.id.length <= 100 &&
+          typeof item.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(item.date)
+        ).slice(-100).map((item) => ({
+          id: item.id,
+          date: item.date,
+          total: Math.max(0, Math.min(10000, Number(item.total) || 0)),
+          correct: Math.max(0, Math.min(10000, Number(item.correct) || 0)),
+          minutes: Math.max(0, Math.min(100000, Number(item.minutes) || 0)),
+          mode: item.mode === "timed" ? "timed" : "tutor",
+          questionIds: Array.isArray(item.questionIds)
+            ? item.questionIds.filter((id) => questions.some((question) => question.id === id))
+            : []
+        }));
+      }
+    },
+    {
+      itemKey: "namaa:tracker",
+      value: { items: state.tracker },
+      apply(value) {
+        const items = value.items && typeof value.items === "object" && !Array.isArray(value.items) ? value.items : {};
+        state.tracker = Object.fromEntries(Object.entries(items)
+          .filter(([id, entry]) => questions.some((question) => question.id === id) && entry && typeof entry === "object")
+          .map(([id, entry]) => [id, {
+            attempts: Math.max(0, Math.min(10000, Number(entry.attempts) || 0)),
+            correct: Math.max(0, Math.min(10000, Number(entry.correct) || 0)),
+            firstCorrect: Boolean(entry.firstCorrect),
+            status: ["correct", "wrong", "new"].includes(entry.status) ? entry.status : "new",
+            flagged: Boolean(entry.flagged),
+            updatedAt: typeof entry.updatedAt === "string" ? entry.updatedAt.slice(0, 40) : ""
+          }]));
+      }
+    },
+    {
+      itemKey: "namaa:dismissed",
+      value: { itemStates: setStatesFor("dismissed", state.dismissedQuestions) },
+      apply(value) {
+        state.dismissedQuestions = applySetStates("dismissed", value.itemStates, (id) =>
+          questions.some((question) => question.id === id)
+        );
+      }
+    },
+    {
+      itemKey: "namaa:videos",
+      value: {
+        completedStates: setStatesFor("videos", state.completedVideos),
+        progress: state.videoProgress
+      },
+      apply(value) {
+        state.completedVideos = applySetStates("videos", value.completedStates, (id) =>
+          videos.some((video) => video.id === id)
+        );
+        state.videoProgress = sanitizeVideoProgress(value.progress, state.completedVideos);
+      }
+    },
+    {
+      itemKey: "namaa:flashcards",
+      value: {
+        ratings: state.cardRatings,
+        schedule: state.cardSchedule,
+        reviews: state.cardReviewLog.slice(-50)
+      },
+      apply(value) {
+        state.cardRatings = Object.fromEntries(Object.keys(defaultState().cardRatings).map((key) =>
+          [key, Math.max(0, Math.min(10000, Number(value.ratings?.[key]) || 0))]
+        ));
+        state.cardSchedule = sanitizeCardSchedule(value.schedule);
+        state.cardReviewLog = sanitizeCardReviewLog(value.reviews);
+      }
+    },
+    {
+      itemKey: "namaa:osce",
+      value: {
+        interviewStates: setStatesFor("osce-interview", state.osceChecks.map(String)),
+        stationStates: Object.fromEntries(["sharedPlan", "structure"].map((station) => [
+          station,
+          setStatesFor(`osce-${station}`, state.osceStationChecks[station] || [])
+        ]))
+      },
+      apply(value) {
+        state.osceChecks = applySetStates("osce-interview", value.interviewStates, (id) =>
+          /^\d+$/.test(id) && Number(id) < osceChecklist.length
+        ).map(Number);
+        const stationChecks = {};
+        for (const station of ["sharedPlan", "structure"]) {
+          stationChecks[station] = applySetStates(`osce-${station}`, value.stationStates?.[station], (id) =>
+            /^\d+$/.test(id) && Number(id) < (osceStations[station]?.checklist?.length || 0)
+          ).map(Number);
+        }
+        state.osceStationChecks = sanitizeOsceStationChecks(stationChecks);
+      }
+    }
+  ];
+}
+
+async function putProgress(itemKey, payload) {
+  const body = { payload };
+  if (serializedSize(body) > 10000) {
+    throw new ApiClientError(t("syncTooLarge"), 413, "payload_too_large");
+  }
+  return requestApi(`/api/study/progress/${encodeURIComponent(itemKey)}`, {
+    method: "PUT",
+    body: JSON.stringify(body)
+  }, accountState.csrfToken);
+}
+
+function bookmarkMetadata(record) {
+  const marker = record?.metadata?.namaaSync;
+  if (
+    marker && typeof marker.deleted === "boolean" &&
+    typeof marker.changedAt === "string" && Number.isFinite(Date.parse(marker.changedAt))
+  ) {
+    return { deleted: marker.deleted, changedAt: marker.changedAt };
+  }
+  const createdAt = Number(record?.createdAt);
+  return {
+    deleted: false,
+    changedAt: new Date(Number.isFinite(createdAt) ? createdAt * 1000 : 0).toISOString()
+  };
+}
+
+async function syncBookmarks(remoteItems) {
+  const remote = new Map();
+  for (const item of remoteItems) {
+    const prefix = "namaa-article:";
+    if (item.kind !== "article" || typeof item.itemKey !== "string" || !item.itemKey.startsWith(prefix)) continue;
+    const id = item.itemKey.slice(prefix.length);
+    if (articles.some((article) => article.id === id)) remote.set(id, { item, ...bookmarkMetadata(item) });
+  }
+  const ids = new Set([
+    ...state.savedArticles.filter((id) => articles.some((article) => article.id === id)),
+    ...Object.keys(state.bookmarkChanges),
+    ...remote.keys()
+  ]);
+  if (ids.size > 500) throw new ApiClientError(t("syncTooLarge"), 413, "bookmark_limit_exceeded");
+
+  const saved = new Set(state.savedArticles);
+  const changes = { ...state.bookmarkChanges };
+  const updates = [];
+  for (const id of ids) {
+    const localChange = changes[id];
+    const remoteChange = remote.get(id);
+    const legacyLocal = !localChange && saved.has(id) && !remoteChange
+      ? { deleted: false, changedAt: state.updatedAt }
+      : null;
+    const local = localChange || legacyLocal;
+    let winner = remoteChange;
+    let localWins = false;
+    if (local && (!remoteChange || Date.parse(local.changedAt) >= Date.parse(remoteChange.changedAt))) {
+      winner = local;
+      localWins = true;
+    }
+    if (!winner) continue;
+    if (winner.deleted) saved.delete(id);
+    else saved.add(id);
+    changes[id] = { deleted: winner.deleted, changedAt: winner.changedAt };
+    if (
+      localWins &&
+      (!remoteChange || remoteChange.deleted !== winner.deleted || remoteChange.changedAt !== winner.changedAt)
+    ) {
+      updates.push({ id, change: winner });
+    }
+  }
+  state.savedArticles = [...saved];
+  state.bookmarkChanges = changes;
+
+  for (const { id, change } of updates) {
+    await requestApi(`/api/study/saved/${encodeURIComponent(`namaa-article:${id}`)}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        kind: "article",
+        metadata: { namaaSync: { deleted: change.deleted, changedAt: change.changedAt } }
+      })
+    }, accountState.csrfToken);
+  }
+}
+
+async function performAccountSync() {
+  if (!accountState.user || !accountState.csrfToken) return;
+  if (syncInProgress) throw new ApiClientError("A sync is already in progress.", 0, "sync_in_progress");
+  clearTimeout(syncTimer);
+  syncTimer = null;
+  syncInProgress = true;
+  accountState.syncStatus = "syncing";
+  accountState.error = null;
+  render();
+  try {
+    const [remoteProgress, remoteSaved] = await Promise.all([
+      requestApi("/api/study/progress"),
+      requestApi("/api/study/saved")
+    ]);
+    if (!Array.isArray(remoteProgress.items) || !Array.isArray(remoteSaved.items)) {
+      throw new ApiClientError("The account service returned invalid saved data.", 0, "invalid_sync_response");
+    }
+    const cloudProgress = new Map(remoteProgress.items.map((item) => [item.itemKey, item]));
+    const snapshots = localProgressSnapshots();
+    const mergedRecords = snapshots.map((snapshot) => {
+      const localPayload = {
+        version: 1,
+        modifiedAt: state.updatedAt,
+        value: snapshot.value
+      };
+      const remoteRecord = cloudProgress.get(snapshot.itemKey);
+      const payload = mergeProgressPayloads(localPayload, remoteRecord?.payload || null);
+      if (serializedSize({ payload }) > 10000) {
+        throw new ApiClientError(t("syncTooLarge"), 413, "payload_too_large");
+      }
+      snapshot.apply(payload.value);
+      return { itemKey: snapshot.itemKey, payload, remote: remoteRecord?.payload || null };
+    });
+    await syncBookmarks(remoteSaved.items);
+    persist();
+    for (const record of mergedRecords) {
+      if (!record.remote || JSON.stringify(record.payload.value) !== JSON.stringify(record.remote.value)) {
+        await putProgress(record.itemKey, record.payload);
+      }
+    }
+    accountState.syncStatus = "synced";
+    accountState.error = null;
+    render();
+  } catch (error) {
+    accountState.syncStatus = "failed";
+    accountState.error = error instanceof Error ? error.message : t("accountSyncFailed");
+    render();
+    throw error;
+  } finally {
+    syncInProgress = false;
+  }
+}
+
+function scheduleAccountSync() {
+  if (!accountState.initialized || !accountState.user || syncInProgress) return;
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(() => {
+    performAccountSync().catch((error) => {
+      console.warn("Study data could not be synchronized.", error);
+      showToast(t("syncError", { message: error.message || t("accountSyncFailed") }));
+    });
+  }, 1200);
+}
+
+async function initializeAccount() {
+  const authResult = new URLSearchParams(location.search).get("auth");
+  const result = await checkAccountService();
+  accountState.apiAvailable = result.available;
+  accountState.status = result.available ? (result.user ? "signed-in" : "signed-out") : "unavailable";
+  accountState.user = result.user;
+  accountState.csrfToken = result.csrfToken;
+  accountState.initialized = true;
+  render();
+  if (authResult) {
+    const url = new URL(location.href);
+    url.searchParams.delete("auth");
+    history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+    if (authResult === "error") showToast(t("authLoginError"));
+  }
+  if (accountState.user) {
+    try {
+      await performAccountSync();
+    } catch (error) {
+      console.warn("Initial account synchronization failed.", error);
+      showToast(t("syncError", { message: error.message || t("accountSyncFailed") }));
+    }
+  }
+}
+
 function renderSync() {
-  return `<h2>${t("progressSync")}</h2><div class="note-box">${t("syncSecurity")}</div><div class="setting-line"><div><strong>${t("cloudSync")}</strong><small>${t("syncLocalOnly")}</small></div><input type="checkbox" aria-label="${t("cloudSync")}" disabled></div><div class="settings-fields"><div class="insight-card"><small>${t("syncStatus")}</small><strong>${t("unavailable")}</strong></div><div class="insight-card"><small>${t("cloudQuota")}</small><strong>—</strong></div></div><div class="setting-line"><button class="btn btn-primary" disabled>${t("syncNow")}</button><span class="badge">${t("unavailable")}</span></div><div class="setting-line"><div><strong>${t("peerLink")}</strong><small>${t("peerDiscovery")} · ${t("qrLink")}</small></div><button class="btn btn-secondary" disabled>${t("unavailable")}</button></div><div class="setting-line"><div><strong>${t("localSyncTitle")}</strong><small>${t("backupPrivacy")}</small></div><button class="btn btn-primary" data-action="export-backup">${t("exportBackup")}</button></div><button class="btn btn-secondary" data-action="open-setting" data-category="backup">${t("backupRestore")}</button>`;
+  const status = !accountState.apiAvailable ? t("accountApiUnavailable")
+    : accountState.user ? t(accountState.syncStatus === "synced" ? "accountSynced" : accountState.syncStatus === "syncing" ? "accountSyncing" : accountState.syncStatus === "failed" ? "accountSyncFailed" : "accountSyncPending")
+      : t("accountServiceReady");
+  return `<h2>${t("progressSync")}</h2><div class="note-box">${t("syncSecurity")}</div>${renderAccountPanel()}<div class="settings-fields"><div class="insight-card"><small>${t("syncStatus")}</small><strong>${status}</strong></div><div class="insight-card"><small>${t("localSyncTitle")}</small><strong>${t("syncLocalOnly")}</strong></div></div><div class="setting-line"><div><strong>${t("localSyncTitle")}</strong><small>${t("backupPrivacy")}</small></div><button class="btn btn-primary" data-action="export-backup">${t("exportBackup")}</button></div><button class="btn btn-secondary" data-action="open-setting" data-category="backup">${t("backupRestore")}</button>`;
 }
 
 function navigate(route) {
@@ -3037,7 +3474,33 @@ document.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-action]");
   if (!button) return;
   const action = button.dataset.action;
-  if (action === "navigate") {
+  if (action === "account-logout") {
+    button.disabled = true;
+    try {
+      await requestApi("/api/auth/logout", { method: "POST" }, accountState.csrfToken);
+      accountState.user = null;
+      accountState.csrfToken = null;
+      accountState.status = "signed-out";
+      accountState.syncStatus = "local";
+      accountState.error = null;
+      render();
+      showToast(t("signOut"));
+    } catch (error) {
+      button.disabled = false;
+      showToast(t("authLogoutError"));
+      console.warn("Account logout failed.", error);
+    }
+  } else if (action === "sync-now") {
+    button.disabled = true;
+    try {
+      await performAccountSync();
+      showToast(t("syncSuccess"));
+    } catch (error) {
+      showToast(t("syncError", { message: error.message || t("accountSyncFailed") }));
+    } finally {
+      button.disabled = false;
+    }
+  } else if (action === "navigate") {
     if (button.dataset.route === "settings") settingsCategory = "index";
     navigate(button.dataset.route);
   } else if (action === "open-setting") {
@@ -3160,6 +3623,10 @@ document.addEventListener("click", async (event) => {
     const id = button.dataset.id;
     const wasSaved = state.savedArticles.includes(id);
     state.savedArticles = toggleListValue(state.savedArticles, id);
+    state.bookmarkChanges[id] = {
+      deleted: wasSaved,
+      changedAt: new Date().toISOString()
+    };
     persist();
     if (!$("#modal-backdrop").hidden && $("#modal-content .article-reader")) {
       const article = articles.find((item) => item.id === id);
@@ -3613,6 +4080,13 @@ if (currentRoute === "qbank" && state.activeSession) startSessionTimer();
 render();
 const sharedArticleId = new URLSearchParams(location.search).get("article");
 if (currentRoute === "library" && sharedArticleId && articles.some((article) => article.id === sharedArticleId)) openArticle(sharedArticleId);
+initializeAccount().catch((error) => {
+  accountState.status = "unavailable";
+  accountState.apiAvailable = false;
+  accountState.error = error.message || t("accountApiUnavailable");
+  render();
+  console.warn("Account service initialization failed.", error);
+});
 if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
   navigator.serviceWorker.register("./sw.js").catch((error) => console.warn("Offline app shell could not be enabled.", error));
 }

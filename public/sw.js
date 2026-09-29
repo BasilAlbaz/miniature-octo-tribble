@@ -1,8 +1,9 @@
-const CACHE_NAME = "namaa-shell-v1";
+const CACHE_NAME = "namaa-shell-v2";
 const SHELL_FILES = [
   "./",
   "./index.html",
   "./app.js",
+  "./account-sync.js",
   "./styles.css",
   "./manifest.webmanifest"
 ];
@@ -24,11 +25,12 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const request = event.request;
-  if (request.method !== "GET" || new URL(request.url).origin !== self.location.origin) return;
+  const url = new URL(request.url);
+  if (request.method !== "GET" || url.origin !== self.location.origin || url.pathname.startsWith("/api/")) return;
   event.respondWith((async () => {
     const cached = await caches.match(request);
     const network = fetch(request).then(async (response) => {
-      if (response.ok && !new URL(request.url).pathname.endsWith("/api/status")) {
+      if (response.ok) {
         const cache = await caches.open(CACHE_NAME);
         await cache.put(request, response.clone());
       }
